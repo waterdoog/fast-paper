@@ -1,0 +1,76 @@
+\section{Operationalization: Discovery $\times$ Access}
+\label{sec:operational}
+
+The architectural group collapses onto two axes that are usually conflated. We
+separate them, and the separation is what the $2\times2$ in
+Figure~\ref{fig:twobytwo} exists to enforce.
+
+\paragraph{Discovery: who is addressable.}
+Whether a requester may enumerate the whole directory or only a bounded roster. This
+is the axis the term ``public'' most often refers to, and the one broadcast networks
+for agents are built around: an agent publishes what it needs and what it offers, and
+the network routes to whoever is relevant.
+
+\paragraph{Access: what a counterpart exposes.}
+Whether a counterpart presents an \emph{interface}---accept a task, return a
+result, reveal nothing else---or a \emph{store} that may be listed and read. The
+distinction is not ours: it is the design choice separating agent-to-agent task
+protocols, which deliberately keep a counterpart opaque, from granted resource scopes,
+in which a principal hands another principal read access to files or folders. A
+capability kernel expresses both as capabilities over different namespaces, so a
+condition is a set of grants rather than a different codebase.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[font=\small,
+  cell/.style={draw,rounded corners=1pt,minimum width=4.9cm,minimum height=1.85cm,align=center,inner sep=4pt},
+  hdr/.style={font=\small\bfseries,align=center}]
+  \node[hdr] at (0,1.55) {\textsf{sandboxed access}\\[-1pt]{\footnotesize\mdseries interface: ask / delegate}};
+  \node[hdr] at (5.4,1.55) {\textsf{store access}\\[-1pt]{\footnotesize\mdseries list / read}};
+  \node[hdr,rotate=90] at (-3.35,0) {\textsf{open discovery}};
+  \node[hdr,rotate=90] at (-3.35,-2.35) {\textsf{bounded roster}};
+
+  \node[cell,fill=arch!8]  (A) at (0,0)        {\textbf{A}\\ open + sandboxed\\[1pt]{\footnotesize the canonical \emph{public} regime}};
+  \node[cell,fill=black!4] (B) at (5.4,0)      {\textbf{B}\\ open + readable\\[1pt]{\footnotesize rare; an open corpus}};
+  \node[cell,fill=black!4] (C) at (0,-2.35)    {\textbf{C}\\ bounded + sandboxed\\[1pt]{\footnotesize a trusted service call}};
+  \node[cell,fill=text!8]  (D) at (5.4,-2.35)  {\textbf{D}\\ bounded + readable\\[1pt]{\footnotesize the canonical \emph{private} regime}};
+
+  \draw[-{Latex[length=2mm]},thick,arch] ($(A.south east)+(0.15,0.15)$) -- ($(D.north west)+(-0.15,-0.15)$)
+      node[midway,sloped,above,font=\scriptsize\itshape,black] {what is usually compared};
+\end{tikzpicture}
+\caption{The architectural group reduces to two axes. Comparing only \textbf{A}
+against \textbf{D}---the diagonal---confounds discovery with access, which is the
+design error this factorial exists to prevent. \textbf{B} and \textbf{C} are the
+controls that recover the two main effects, and \textbf{C} is not a contrivance: a
+trusted counterpart that still answers rather than exposes is the common case inside
+organizations.}
+\label{fig:twobytwo}
+\end{figure}
+
+\paragraph{Main effects.}
+With all four cells run, the two effects separate additively:
+\begin{align}
+\Delta_{\text{access}}   &= \tfrac{1}{2}\big[(B - A) + (D - C)\big], \\
+\Delta_{\text{discovery}} &= \tfrac{1}{2}\big[(A - C) + (B - D)\big].
+\end{align}
+A study that runs only $A$ and $D$ reports $\Delta_{\text{access}} +
+\Delta_{\text{discovery}}$ and cannot say which term carries it.
+
+\paragraph{One kernel, four configurations.}
+Every cell runs on the same capability kernel, the same agent runtime, and the same
+model. Discovery is the scope of the directory a requester may enumerate. Access is
+which namespaces a grant covers: an interface-only grant permits a task-invocation
+action; a store grant additionally permits \texttt{list} and \texttt{read} over a
+resource path. Two further architectural dimensions ride on the same mechanism:
+identity continuity is whether a counterpart's namespace survives the encounter, and
+repeated interaction is whether an episode's later phases reuse it. Delegation depth
+is bounded per configuration and refusals are logged, so a counterpart that tries to
+sub-delegate beyond its ceiling produces an event rather than a silent success.
+
+\paragraph{Fairness control.}
+The requester keeps its own notes in every cell. It remembers which counterparts it
+contacted and how that went, in $A$ exactly as in $D$. Withholding requester memory
+from the open configurations would manufacture the warm-start result we intend to
+test. What differs across cells is therefore not memory as such but whether memory is
+\emph{bilateral}---whether the counterpart also remembers, and whether a shared store
+accumulates between them.

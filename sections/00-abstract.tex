@@ -1,0 +1,34 @@
+Agent networks encode relationships in two very different places. Some relational
+structure is written as \emph{text}---agent cards, reputation scores, stated shared
+goals, tenure, trust labels---and is available to a model only as tokens in a prompt.
+Other structure is \emph{enforced by architecture}---who is addressable at all, what
+may be read rather than merely asked for, what persists between encounters. The
+public/private distinction is usually described in the first vocabulary and
+implemented in the second, and the two are rarely separated. We ask which of them
+actually changes what agents do.
+
+We define public and private agent networks along nine relational dimensions,
+partition those dimensions into an \arch{architectural} group that a coordination
+kernel enforces and a \txt{textual} group that exists only as seeded context, and
+operationalize the architectural group as a $2\times2$ factorial over a
+\emph{discovery} axis (who is addressable) and an \emph{access} axis (whether a
+counterpart exposes an interface or a store). All conditions run on one capability
+kernel, one agent runtime, and one model, so a condition is a configuration rather
+than a different system. Deliverables are hidden-profile artifacts whose required
+values are forced by facts distributed across specialists, which lets the primary
+metrics be exact-match and counter-based rather than judged; three secondary metrics
+that no answer key can capture are scored by blind pairwise comparison with a
+cross-family judge and reported with inter-judge agreement.
+
+Our central hypothesis is that the architectural group dominates: equalizing reach
+removes most of the measured public/private gap, granting store access changes
+outcomes less than it changes what is possible because agents keep asking questions
+they could have answered by reading, and seeded trust, shared goals, accountability
+and tenure move behavior far less than their prominence in agent-network design
+suggests. We further predict that extraction is lossy in a way delegation is not, so
+a sandboxed public counterpart can beat a readable private one on decomposable work,
+and that the more trusted channel absorbs \emph{more} misinformation because reading
+a store bypasses the filtering that answering a question imposes. Scale variables are
+reported as probes of these hypotheses rather than as findings in themselves: an
+optimum that does not move when a relational property is seeded is evidence that the
+property is inert.

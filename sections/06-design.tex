@@ -1,0 +1,92 @@
+\section{Experimental Design}
+\label{sec:design}
+
+\subsection{Predictions}
+
+Each prediction below was chosen against one filter: \emph{would a careful reader bet
+on it in advance?} Claims that pass that filter trivially---an open network produces
+more variety, a persistent team completes more---are excluded, because confirming
+them consumes a study and returns nothing.
+
+\begin{enumerate}[label=\textbf{H\arabic*},ref=\arabic*,leftmargin=2.2em,itemsep=2pt]
+\item\label{h:arch} \textbf{Architecture dominates text.}
+      $|\Delta_{\text{architectural}}| \gg |\Delta_{\text{textual}}|$ on the primary
+      metrics. \emph{Falsified if} seeded trust, shared goals, accountability or
+      tenure move outcomes comparably to the architectural knobs.
+
+\item\label{h:reach} \textbf{Equalizing reach erases most of the gap.}
+      Comparing $A$ to $D$ overstates the public/private difference relative to the
+      isolated $\Delta_{\text{access}}$. \emph{Falsified if} the two main effects are
+      of similar magnitude.
+
+\item\label{h:lossy} \textbf{Extraction is lossy; delegation is not.}
+      On decomposable subtasks a sandboxed counterpart beats a readable one, because
+      answering uses the holder's full local context whereas reading forces the
+      requester to re-join partial material. \emph{Falsified if} store access
+      dominates uniformly.
+
+\item\label{h:afford} \textbf{Agents do not use the affordances they are given.}
+      With \texttt{list} and \texttt{read} available, requesters continue to ask
+      questions; with persistent memory available, they do not reuse it. \emph{
+      Falsified if} tool-use distributions shift materially when the affordance
+      appears.
+
+\item\label{h:pollute} \textbf{The trusted channel absorbs more misinformation.}
+      Distractor absorption is \emph{higher} under store access than under sandboxed
+      access, because a question forces the holder to filter while a read does not.
+      \emph{Falsified if} absorption tracks distractor exposure alone.
+
+\item\label{h:inert} \textbf{Optima do not move under seeding.}
+      $N^{*}$ is unchanged between seeded-trust and control. \emph{Falsified if}
+      $N^{*}$ shrinks under seeded trust---which would mean the seed changed the
+      requester's stopping rule, and hence that relational text is not inert.
+
+\item\label{h:cross} \textbf{Crossing has an interior optimum.}
+      Hybrid utility is non-monotone in \metric{crossing\_count}: zero crossings
+      under-explore, many crossings lose context and pay reconciliation repeatedly.
+      \emph{Falsified if} utility is monotone in either direction.
+\end{enumerate}
+
+\subsection{Conditions}
+
+Three task conditions, each realized as configurations of the same kernel: public
+strangers ($A$), a pre-existing private team ($D$), and a private team with public
+consultation. The third is not recruitment---public counterparts never gain
+membership, presence, or execution authority. Material returns only by being
+distilled into a file under the private tree with provenance, so that reading a
+public answer and writing a private file remain separate permission decisions. Cells
+$B$ and $C$ complete the factorial and are what allow the two main effects to be
+separated.
+
+\subsection{Scale variables as probes}
+
+We report $N$ (public query breadth), $K$ (private team size), $T$ (interaction
+history), $Q$ (consultation frequency) and $R$ (fraction of external material
+imported). We do not report an optimum as a finding on its own: an $N^{*}$ obtained in
+one setup is setup-specific and generalizes poorly.
+
+Instead each is measured \emph{under both seeded and control conditions}, and the
+quantity of interest is the difference between the two curves. Under \hyp{h:inert} an
+optimum is a readout of whether a relational property changed a policy: if seeded
+trust does not shift where a requester stops asking, the seed did not enter the
+stopping rule. $Q$ and $R$ receive the most attention because they concern the
+boundary, which is the paper's subject; $N$ and $K$ are reported as probes and
+supporting curves.
+
+\subsection{Controls and preregistration}
+
+One model across all agents and all cells; one runtime; one kernel. Identical task
+prompts, deliverable schemas, scoring functions, token budgets, and seed
+distributions. Rate limits and loop bounds are logged per episode rather than absorbed
+into results. Rubrics, schemas, normalization rules and the scorer signature are
+frozen before any run; the mapping from each hypothesis to the figure that tests it is
+fixed in advance and reproduced in the appendix.
+
+\paragraph{Preliminary observation.}
+A pilot conducted before the access axis was implemented compared open against
+bounded discovery with both configurations exposing readable stores---that is, cells
+$B$ and $D$ rather than $A$ and $D$. Equalizing reach in that pilot removed the large
+majority of the measured difference. We report it in
+Section~\ref{sec:results} as a bound on $\Delta_{\text{discovery}}$ and as the
+motivation for the factorial, and we note its limitation: with both cells on the
+readable column it could not have detected an access effect at all.

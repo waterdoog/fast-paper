@@ -1,0 +1,82 @@
+\section{Two Regimes, Nine Dimensions}
+\label{sec:framework}
+
+\subsection{Definition}
+
+A \textbf{public} agent network is one in which interaction does not require a
+pre-existing relationship: participation is open or nearly so, counterparts are
+found by relevance, and an encounter is not presumed to repeat. A \textbf{private}
+agent network is membership-bounded and its relationships predate the task: the
+agents act for people who are already colleagues, and interaction is expected to
+continue. A \textbf{hybrid} regime is neither a blend nor a recruitment funnel; it is
+a single task that \emph{switches regime by phase}---a private core states the
+problem, sanitizes it, consults a public periphery to widen the possibility space,
+then returns to the private side to narrow the decision space, commit, and execute.
+Public expands what is possible; private is where something is promised.
+
+Table~\ref{tab:dims} states the nine dimensions along which the two regimes differ.
+The first column is not new; versions of it appear throughout the literature on ties,
+teams, and open innovation. What is new is the partition.
+
+\begin{table}[t]
+\centering\small
+\caption{Nine relational dimensions, partitioned by where they live. The
+\arch{architectural} group is enforced by the coordination kernel: an agent cannot
+argue its way past them. The \txt{textual} group reaches the model only as tokens.
+The paper's central question is the ratio of their effect sizes.}
+\label{tab:dims}
+\begin{tabular}{@{}llll@{}}
+\toprule
+& \textbf{Dimension} & \textbf{Public} & \textbf{Private} \\
+\midrule
+\multirow{4}{*}{\rotatebox{90}{\arch{\footnotesize architectural}}}
+& \dimname{Membership openness}    & open                & bounded roster \\
+& \dimname{Shared-state depth}     & shallow, per-contact & deep, persistent \\
+& \dimname{Repeated interaction}   & uncertain            & expected \\
+& \dimname{Identity continuity}    & weak                 & strong \\
+\midrule
+\multirow{5}{*}{\rotatebox{90}{\txt{\footnotesize textual}}}
+& \dimname{Relationship origin}    & relevance matching   & prior social or organizational tie \\
+& \dimname{Prior trust}            & low                  & higher \\
+& \dimname{Shared goals}           & often absent         & usually present \\
+& \dimname{Accountability}         & weak, diffuse        & attributable \\
+& \dimname{Exit cost}              & low                  & high \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Why the partition is the contribution}
+
+Nine dimensions are not nine degrees of freedom. In any deployed system they are
+heavily coupled: open membership tends to come with weak identity, which tends to
+come with diffuse accountability and low exit cost. Presenting them as a flat list
+implies an independence that does not exist and invites a study that varies all of
+them at once and attributes the result to whichever one the authors find most
+interesting.
+
+The partition breaks the coupling in the one way a controlled study can. The
+\arch{architectural} four are properties of the coordination layer. They can be set
+independently, they are checked on every call, and a model has no way to circumvent
+them. The \txt{textual} five are properties of the people behind the agents. A
+harness cannot instantiate them; it can only \emph{assert} them---which is precisely
+what a real agent card, reputation field, or relationship-history summary does.
+
+That is not a limitation to apologize for. It is the experiment. Deployed agent
+networks already communicate trust, alignment, accountability and tenure as text, on
+cards and in context windows. Asking whether a model acts on that text is asking
+whether a large and growing part of agent-network design does anything.
+
+\subsection{The claim}
+
+We predict a large asymmetry: the architectural group moves outcomes, the textual
+group moves them little, and the gap between them is larger than the design
+literature would suggest. Two consequences follow if this holds. First, comparisons
+of ``public'' against ``private'' networks that do not equalize architecture are
+measuring membership, not relationship. Second, effort spent enriching relational
+metadata is misallocated relative to effort spent making the runtime enforce
+something.
+
+Both outcomes are publishable. If seeded trust does reduce verification cost and
+seeded accountability does reduce error, that is a positive result with an immediate
+design implication---relational metadata works, and here is the elasticity. Our
+prediction is the reverse, and we state it in advance so that it can fail.

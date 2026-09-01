@@ -1,0 +1,68 @@
+\section{Introduction}
+
+Two pictures of an agent network are in circulation. In the first, agents discover
+each other in the open: they publish what they can do, broadcast what they need, and
+are matched by relevance rather than by prior acquaintance. In the second, agents
+act for people who already work together: membership is bounded, interaction repeats,
+context accumulates, and someone is accountable when the work is wrong. The first
+picture is usually called public and the second private, and the difference is
+usually described as a difference in \emph{visibility}.
+
+Visibility is the wrong frame, and a deployed system makes that obvious. Whether a
+stranger can \emph{find} an agent and whether that stranger can \emph{read what the
+agent holds} are separately enforced, and they do not co-vary. An open directory can
+front a counterpart that answers questions and reveals nothing; a bounded roster can
+front a counterpart whose entire working store is readable. The interesting question
+is not who can be seen but what crosses the boundary once contact is made---and,
+prior to that, whether the relational language the field uses corresponds to anything
+the runtime enforces at all.
+
+That last point is the paper's subject. Agent networks encode relationships in two
+places. Some of it is \arch{architecture}: the directory a requester may enumerate,
+whether a counterpart exposes an interface or a store, whether state persists between
+encounters, whether identity is stable across them. A kernel checks these; an agent
+cannot talk its way past them. The rest is \txt{text}: a trust score on a card, a
+stated shared objective, a note that two parties have collaborated before, a claim
+that answers are logged and attributed. These reach the model as tokens, and whether
+they change behavior is an empirical question that, to our knowledge, has not been
+asked.
+
+We suspect the answer is uncomfortable. Preliminary work in our own setting suggests
+that once reach is equalized between a public and a private configuration, most of
+the measured difference between them disappears---and reach is the crudest of the
+architectural properties. If the textual group is largely inert on top of that, then
+much of what agent-network design currently invests in---richer cards, reputation
+fields, declared alignment, relationship history surfaced as context---is decoration
+that a runtime does not act on.
+
+\paragraph{Contributions.}
+\begin{enumerate}[leftmargin=1.4em,itemsep=1pt,topsep=2pt]
+\item A definition of public and private agent networks over nine relational
+      dimensions, partitioned into an \arch{architectural} group a kernel enforces
+      and a \txt{textual} group that exists only as seeded context
+      (Section~\ref{sec:framework}).
+\item An operationalization of the architectural group as a $2\times2$ factorial over
+      \emph{discovery} and \emph{access}, run as configurations of a single
+      capability kernel so that a condition differs from another in named values
+      rather than in implementation (Section~\ref{sec:operational}).
+\item A seeding protocol for the textual group, with an explicit validity boundary:
+      we measure whether agents act on asserted relational context, not what trust
+      does in a human network (Section~\ref{sec:seeding}).
+\item A measurement design whose primary metrics require no judge---deliverables are
+      hidden-profile artifacts with forced values---and whose three judged secondary
+      metrics are blind, pairwise, cross-family, and reported with agreement
+      (Section~\ref{sec:measurement}).
+\item Seven predictions chosen for being ones a careful reader would not confidently
+      bet on in advance, together with the falsification condition for each
+      (Section~\ref{sec:design}).
+\end{enumerate}
+
+\paragraph{What we deliberately do not claim.}
+We do not study how a public stranger becomes a private teammate; the transition is
+instrumented in the deployed system this design is drawn from, but a within-pair
+before/after study is a separate paper. We make no safety claim about either regime:
+both are deny-by-default for action, and we report leakage as a measurement rather
+than a verdict. And we state in advance that the \emph{existence} of a
+task-dependent crossing between regimes is a property of how we allocate facts, not
+a discovery; what is measured is where it falls, what it costs, and how much of the
+attainable each configuration realizes.

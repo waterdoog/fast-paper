@@ -1,0 +1,82 @@
+% =====================================================================
+%  Encoded or Enforced? What Makes a Private Agent Network Private
+%  FAST @ NeurIPS 2026
+%
+%  Default build: 9 pages (workshop full track).
+%  To compress to 4 pages, see README.md — comment out three \input lines.
+% =====================================================================
+\documentclass{article}
+
+% Drop the official neurips_2026.sty into this directory and the paper
+% switches to it automatically. Until then a compatible fallback is used
+% so the project compiles on a clean Overleaf import.
+\IfFileExists{neurips_2026.sty}{%
+  \usepackage[final]{neurips_2026}%
+}{%
+  \usepackage[letterpaper,margin=1in]{geometry}%
+  \usepackage{times}%
+  \usepackage[round]{natbib}%
+  \renewcommand{\baselinestretch}{1.0}%
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{multirow}
+\usetikzlibrary{positioning,fit,backgrounds,calc,arrows.meta}
+
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue!60!black}
+
+% --- shared macros -----------------------------------------------------
+\definecolor{arch}{HTML}{12564E}
+\definecolor{text}{HTML}{9C4221}
+\newcommand{\arch}[1]{\textcolor{arch}{#1}}
+\newcommand{\txt}[1]{\textcolor{text}{#1}}
+\newcommand{\dimname}[1]{\textsc{#1}}
+\newcommand{\metric}[1]{\texttt{#1}}
+\newcommand{\hyp}[1]{\textbf{H\ref{#1}}}
+\newcommand{\TODO}[1]{\textcolor{red}{[TODO: #1]}}
+
+\title{Encoded or Enforced? \\ What Makes a Private Agent Network Private}
+
+\author{%
+  Anonymous Author(s) \\
+  Affiliation \\
+  \texttt{email} \\
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/00-abstract}
+\end{abstract}
+
+\input{sections/01-intro}
+\input{sections/02-framework}
+\input{sections/03-operationalization}
+\input{sections/04-seeding}          % compress to Table 3 for the 4-page build
+\input{sections/05-tasks-measurement}
+\input{sections/06-design}
+\input{sections/07-results}
+\input{sections/08-discussion}
+\input{sections/09-related}          % compress to one paragraph for the 4-page build
+\input{sections/10-conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\appendix
+\input{sections/appendix}             % drop entirely for the 4-page build
+
+\end{document}

@@ -1,0 +1,42 @@
+\section{Discussion and Limitations}
+
+\paragraph{If architecture dominates.}
+The immediate implication is for where design effort goes. Agent cards are acquiring
+reputation fields, alignment declarations and relationship summaries on the assumption
+that a model will act on them. If the textual group is inert, that surface is
+decoration, and the same effort spent making the runtime enforce something---a grant
+that expires, a namespace that persists, a directory that is actually bounded---buys
+behavior change that text does not. It would also mean that published comparisons of
+open against closed agent networks are, to a first approximation, reporting the effect
+of membership.
+
+\paragraph{If the textual group is not inert.}
+Then the paper reports elasticities rather than a null, and those are directly usable:
+how much verification a trust assertion removes, how much error an accountability
+assertion prevents, whether framing alone shifts a stopping rule. We would then expect
+follow-up work on which assertions survive an adversarial counterpart, since a
+relational claim that changes behavior is also a relational claim worth forging.
+
+\paragraph{Limitations.}
+\emph{Seeded relational properties are assertions, not relationships}
+(Section~\ref{sec:seeding}); the study measures runtime sensitivity to asserted
+context and nothing stronger. \emph{The cold-phase crossing is designed}, and only its
+location, cost and realization are measured. \emph{Forced-value deliverables cannot
+capture whether an artifact is well argued}, which is the price of removing the judge
+from the primary metrics; the three judged metrics recover part of it under stated
+conditions and with agreement reported. \emph{The study runs on a reference
+implementation of the coordination kernel, not on a production deployment}: the
+architectural knobs and the capability model are drawn from deployed source, but the
+runs are not deployment traces, and we describe the work as measured on a reference
+kernel rather than as a deployment study. Finally, \emph{one model family carries the
+main sweep}; a replication on a second family is reported, but relational sensitivity
+is plausibly model-specific and we do not claim otherwise.
+
+\paragraph{Threats to validity we can name in advance.}
+A null on the textual group could be a prompt-engineering artifact rather than a
+property of the runtime: a stronger seed, placed differently in context, might move
+behavior. We mitigate by seeding at three intensities and reporting the dose-response,
+and by including the \dimname{relationship origin} condition, which is the weakest
+possible seed and therefore the cleanest test of whether framing alone does anything.
+A null could also be a ceiling effect if the tasks are too easy to differentiate
+configurations; \metric{realization} is reported partly to detect this.
