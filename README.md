@@ -54,6 +54,53 @@ sections/
   appendix.tex            ← skeleton
 ```
 
+## Format compliance — checked against the official NeurIPS 2026 instructions
+
+Verified against the NeurIPS 2026 formatting instructions on 2026-09-02.
+
+| Requirement | Status |
+|---|---|
+| Only `neurips_2026.sty` is supported; tweaking style files may be grounds for desk rejection | conditional load; fallback is clearly marked and never ships to a submission |
+| **Submission omits both `final` and `preprint`** — that is what anonymizes and adds review line numbers | fixed (was `[final]`, which would have de-anonymized) |
+| Abstract limited to **one paragraph** | fixed (was three) |
+| Headings lower case except first word and proper nouns | fixed across all sections |
+| 10 pt / 11 pt leading, 5.5 in x 9 in text block, 1.5 in left margin | fallback geometry now matches, so the page count here is honest |
+| Paragraphs separated by 5.5 pt, no indentation | set in fallback |
+| Display math via AMS environments (bare TeX breaks review line numbers) | `align` used throughout |
+| References do not count toward the page limit | bibliography after body |
+| Appendix after references, no separate PDF, no page limit | `\appendix` after `\bibliography` |
+| Checklist follows the references, does not count toward the limit | stub at `sections/checklist.tex`, commented out — **required for the main conference, usually waived for workshops; confirm** |
+| Do not refer to review line numbers in the text | n/a |
+| Fonts must be Type 1 or embedded TrueType | check with `pdffonts main.pdf` before submitting |
+
+### Length
+
+Current build is 12 pages: **body ~10.5, references ~1, appendix ~1.5**. References and
+appendix do not count, so the body is already over a 9-page limit **with §7 Results still
+a 173-word skeleton**. Written out, Results adds roughly 2--2.5 pages.
+
+Cut list, in the order that costs least:
+
+| Cut | Saves |
+|---|---|
+| §4 prose collapsed into Table 3 | ~0.6 p |
+| §9 compressed to one paragraph | ~0.4 p |
+| §2.2 and §2.3 merged (they overlap §1 and §8) | ~0.5 p |
+| §5 scoring rules and honesty statement moved to appendix | ~0.5 p |
+| §6 predictions rendered as a table | ~0.4 p |
+| §8 threats-to-validity moved to appendix | ~0.3 p |
+
+That is ~2.7 pages, landing the body near 7.8 and leaving room for Results. Do it now
+rather than at the end.
+
+### Venue
+
+**The FAST workshop could not be verified.** Two searches of the NeurIPS 2026 workshop
+listings returned no workshop by that name. Other NeurIPS 2026 agent workshops set
+limits of 2, 4, 6, and 9 pages, so the target here is a guess until the CFP is in hand.
+Confirm before cutting: the difference between a 4-page and a 9-page target is a
+different paper, not a shorter one.
+
 ## Before submission
 
 - [ ] Verify every `refs.bib` entry against the publisher record.

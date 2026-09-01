@@ -10,12 +10,19 @@
 % Drop the official neurips_2026.sty into this directory and the paper
 % switches to it automatically. Until then a compatible fallback is used
 % so the project compiles on a clean Overleaf import.
+% Submission: omit BOTH `final` and `preprint`. That is what anonymizes the
+% paper and adds the review line numbers. Use [final] only if accepted,
+% [preprint] only for arXiv. See README before changing this line.
 \IfFileExists{neurips_2026.sty}{%
-  \usepackage[final]{neurips_2026}%
+  \usepackage{neurips_2026}%
 }{%
-  \usepackage[letterpaper,margin=1in]{geometry}%
+  % Fallback only. Geometry matches the official spec (5.5in x 9in text block,
+  % 1.5in left margin, 10pt/11pt) so the page count here is not misleading.
+  \usepackage[letterpaper,textwidth=5.5in,textheight=9in,left=1.5in,top=1in]{geometry}%
   \usepackage{times}%
   \usepackage[round]{natbib}%
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{5.5pt}%
   \renewcommand{\baselinestretch}{1.0}%
 }
 
@@ -75,6 +82,10 @@
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
+
+% Checklist goes after references, before/after supplemental material.
+% Required for the NeurIPS main conference; usually waived for workshops.
+% \input{sections/checklist}
 
 \appendix
 \input{sections/appendix}             % drop entirely for the 4-page build
