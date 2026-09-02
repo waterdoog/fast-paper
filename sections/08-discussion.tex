@@ -28,6 +28,30 @@ consistent and it bounds the headline. The open network wins because it can addr
 holders the bounded one cannot; where the bounded roster already contains the holders,
 and where the work requires going back to them, that advantage is largely spent.
 
+\subsection{A bounded roster as a wall, and what happens when it is not}
+
+A bounded network in this design can address twenty holders and no others. That is a
+truncated directory, not a private network: information reaches a closed group through
+the people in it, one hop further out, slower and lossier. We therefore gave a roster
+member the ability to forward one question to a contact of its own, minted under its own
+authority rather than derived from the requester's, and re-ran.
+
+The gap did not close. Across 64 episodes at sixteen per cell, relay moves the bounded
+arm by $+0.042$ (95\% CI $[-0.137, 0.208]$), and the difference-in-differences against
+the open arm---whose configuration is identical under both settings and which serves as
+the negative control---is $+0.105$ (95\% CI $[-0.105, 0.322]$). The negative control
+behaved: it moved $-0.063$, within 1.0 SE of nothing.
+
+Two details are worth keeping. The same contrast read $+0.255$ at six episodes per cell
+with an interval excluding zero and decayed monotonically as $n$ grew, so the small-$n$
+estimate was noise. And excluding episodes that produced no artifact at all, the bounded
+arm scores $0.734$ with relay against $0.554$ without: relay helps substantially
+\emph{when it completes}, and costs enough exploration budget that seven episodes never
+reached a build. Five of those were relay episodes and two were high first-contact-cost
+episodes without it, so the failure belongs to any mechanism that consumes extra turns,
+and what it exposes is a harness that answers budget exhaustion by refusing tools rather
+than by forcing a build.
+
 \subsection{Forming an edge is free here, and that is the main limitation}
 
 In this design, addressing a stranger costs exactly what addressing a teammate costs.
@@ -50,21 +74,16 @@ context. It does not bound trust wired into routing, memory, retrieval, or permi
 policy, which is where reputation lives in deployed systems and where it can change
 what an agent is able to do rather than what it is told.
 
-Two features of the design also work against detecting an attribute effect, and we
-state them rather than let them read as strength. Our tasks give a requester no way to
-\emph{verify} an answer---there is no second holder to cross-check against---so an
-assertion of prior trust has no verification cost to save, which is the main channel
-through which trust would be expected to act. And no counterpart lies strategically:
-distractors are static, so a reputation signal has no adversary to defend against.
-A relational property that matters mainly for defence cannot show its value in a
-setting with nothing to defend against.
+One feature of the design does work against detecting an attribute effect: no counterpart
+lies strategically, so a reputation signal has no adversary to defend against, and a
+property that matters mainly for defence cannot show its value where there is nothing to
+defend against. The verification channel, by contrast, is present and used---90\% of beats
+met a planted distractor and 94.5\% of encounters were resisted---so an assertion of prior
+trust had a verification cost available to save and did not save it.
 
 \subsection{Other limitations}
 
-The cold-phase crossing between regimes follows from the fact allocation and is not a
-discovery; only its location and cost are measured. Forced-value deliverables cannot
-capture whether an artifact is well argued, the price of removing the judge from every
-primary metric. The kernel is a reference implementation, not a production deployment:
-the interventions are drawn from deployed source but the runs are not deployment
-traces. And one model family carries the sweeps, so relational sensitivity may be
-model-specific.
+The cold-phase crossing follows from the fact allocation and is not a discovery; only its
+location and cost are measured. Forced-value deliverables cannot capture whether an
+artifact is well argued, which is the price of removing the judge. The kernel is a
+reference implementation, not a deployment, and one model family carries the sweeps.
