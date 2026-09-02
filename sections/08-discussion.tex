@@ -69,17 +69,35 @@ experiment a follow-up should do rather than as a caveat to be waved at.
 
 \subsection{What the attribute null does and does not bound}
 
-The null covers the weakest form of relational encoding: a sentence asserted in
-context. It does not bound trust wired into routing, memory, retrieval, or permission
-policy, which is where reputation lives in deployed systems and where it can change
-what an agent is able to do rather than what it is told.
+The null covers assertions in a prompt, the weakest form of relational encoding. It says
+nothing about trust wired into routing, memory, retrieval or permission policy, where
+reputation lives in deployed systems and where it changes what an agent is able to do
+rather than what it is told.
 
-One feature of the design does work against detecting an attribute effect: no counterpart
-lies strategically, so a reputation signal has no adversary to defend against, and a
-property that matters mainly for defence cannot show its value where there is nothing to
-defend against. The verification channel, by contrast, is present and used---90\% of beats
-met a planted distractor and 94.5\% of encounters were resisted---so an assertion of prior
-trust had a verification cost available to save and did not save it.
+It is narrower still, in a way we can now name: each seeded property turns out to have had
+\emph{no available action} behind it. Prior trust and relationship origin were asserted
+uniformly over every card, so neither ranked any counterpart above another and neither
+could change who gets asked first --- deployed reputation is differential, and that is the
+whole of its value. Accountability was attached to responders whose knowledge is a fixed
+list, leaving them nothing to do differently on being told an answer is attributed.
+
+We built a fourth manipulation to remove the first defect: a per-card line reporting how
+often that card's past answers held up, accurate by construction, against a placebo
+assigning the same marks at random. The marks are perfect --- 100\% accurate against 9\%
+for the placebo --- and requirement $F_1$ still does not move ($-0.017$, CI $[-0.174,
+0.143]$). The routing measurement says why: under the accurate marks the requester
+contacts flagged cards at \emph{six times} the base rate rather than avoiding them,
+because the cards flagged unreliable are those holding planted falsehoods, and in this
+task those are the same cards holding the true facts on their subject. Acting on the flag
+would have meant not asking the only source.
+
+The defensible claim is therefore not that relational metadata does not work, but that a
+relational signal moves behavior only where it discriminates between options an agent can
+choose between --- and that three signals which did not, one uniform, one aimed at an
+agent without discretion, and one flagging the sole available source, moved nothing. The
+third is the sharpest, because the signal was accurate and legible and still had nowhere
+to route. Making it actionable requires two holders per fact, one reliable and one not,
+which is a change to the task rather than to a configuration.
 
 Four further limits, stated plainly: the cold-phase crossing follows from the fact
 allocation and is not a discovery, so only its location and cost are measured;
