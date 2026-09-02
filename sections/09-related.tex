@@ -1,42 +1,29 @@
 \section{Related work}
 
-\paragraph{Networked agent infrastructure and protocols.}
+\paragraph{Networked agent protocols and discovery.}
 Agent-to-agent task protocols publish a capability card and accept tasks while
-deliberately keeping a counterpart opaque \cite{a2a2025}; broadcast networks for agents
-route published needs and capabilities among strangers while stating that a
-participant's private information does not enter the network \cite{eigenflux}; surveys
-catalogue the wider protocol design space \cite{agentprotocols2025,coral2025}. These
-systems encode precisely the split we intervene on---whether an edge carries a
-delegated task or direct access to state---but to our knowledge none has been evaluated
-for which side of it changes collective behavior.
+deliberately keeping a counterpart opaque \cite{a2a2025}; broadcast networks route
+published needs among strangers while stating that private information does not enter
+the network \cite{eigenflux}; surveys catalogue the wider design space
+\cite{agentprotocols2025,coral2025}. These systems encode exactly the split we
+intervene on---whether an edge carries a delegated task or direct access to state---and
+capability discovery is the first thrust of current agentic-web research. To our
+knowledge neither has been evaluated for which side of the split changes collective
+behavior. We treat card scope and card contents as experimental variables and find the
+addressable set matters far more than what the cards say, which bears on whether
+manipulation-resistant reputation is solving the binding constraint. That conclusion
+bounds asserted metadata only, not enforcement-coupled reputation.
 
-\paragraph{Discovery, capability representation, and topology.}
-Capability discovery at network scale is the first thrust of current agentic-web
-research, and agent cards are its dominant representation. Our formation axis is an
-intervention on exactly that: which cards a requester may enumerate and address. We
-treat card contents as an experimental variable rather than an interface detail, and
-find that the addressable set matters far more than what the cards say.
-
-\paragraph{Trust, reputation, and coordination.}
-Reputation systems for agent networks assume relational metadata conditions behavior.
-Our attribute axis tests that assumption directly and does not find support for it at
-the level where such metadata is usually carried, which bears on whether
-manipulation-resistant reputation is solving the binding constraint. We are explicit
-that this bounds asserted metadata only, not enforcement-coupled reputation.
-
-\paragraph{Human ties, teams, and information pooling.}
+\paragraph{Human ties, pooling, and capabilities.}
 The intuition that open networks supply variety and bounded ones supply follow-through
 descends from work on weak ties \cite{granovetter1973}, exploration and exploitation
 \cite{march1991}, transactive memory \cite{wegner1987}, and open innovation
-\cite{chesbrough2003}; that literature studies humans, where the properties in our
-attribute group are real rather than asserted. Our task construction is the
-hidden-profile paradigm \cite{stasser1985}, adopted because it supplies exact ground
-truth and makes pooling rather than retrieval the object of measurement.
-
-\paragraph{Capabilities and evaluation.}
-The authority model is object-capability discipline \cite{miller2006}, so a condition
-is a set of grants a kernel checks rather than a convention an agent could ignore.
-Where an answer key cannot reach, blind pairwise comparison with a cross-family judge
-is the standard remedy \cite{zheng2023}, since evaluators favour their own generations
-\cite{panickssery2024}; we preregistered such a protocol but did not run it, and no
-result here depends on a judge.
+\cite{chesbrough2003}---all studying humans, where the properties in our attribute group
+are real rather than asserted. Our tasks are the hidden-profile paradigm
+\cite{stasser1985}, which supplies exact ground truth and makes pooling rather than
+retrieval the object of measurement. The authority model is object-capability
+discipline \cite{miller2006}, so a condition is a set of grants a kernel checks rather
+than a convention an agent could ignore. Where an answer key cannot reach, blind
+pairwise comparison with a cross-family judge is the standard remedy \cite{zheng2023},
+since evaluators favour their own generations \cite{panickssery2024}; we preregistered
+such a protocol but did not run it, and no result here depends on a judge.
