@@ -7,6 +7,10 @@ scores, stated shared goals, tenure) and as **architecture** (who is addressable
 whether a counterpart exposes an interface or a store, what persists). This paper
 separates them and asks which one actually changes agent behaviour.
 
+**Code and data:** [waterdoog/agent-network-study](https://github.com/waterdoog/agent-network-study)
+— the harness, the four cells, the attribute axis, and the analyses that produce every
+number in the paper.
+
 ## Build
 
 ```bash
