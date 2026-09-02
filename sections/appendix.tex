@@ -85,3 +85,24 @@ Any movement at all in the primary metrics. \\
 \section{Reproducibility}
 \TODO{Kernel version, runtime version, model identifiers, seeds, and the command that
 regenerates every table and figure from the run logs.}
+
+\section{Relay: a bounded roster given a second hop}
+\label{app:relay}
+A bounded network here addresses twenty holders and no others, which is a truncated
+directory rather than a private network: information reaches a closed group through the
+people in it, one hop further out. We therefore let a roster member forward one question
+to a contact of its own, minted under its own authority rather than derived from the
+requester's, and re-ran. \textbf{The gap did not close.} Across 64 episodes at sixteen per
+cell relay moves the bounded arm by $+0.042$ (CI $[-0.137, 0.208]$), and the
+difference-in-differences against the open arm --- whose configuration is identical under
+both settings and which serves as the negative control, moving $-0.063$ --- is $+0.105$
+(CI $[-0.105, 0.322]$).
+
+Two details survive it. The same contrast read $+0.255$ at six episodes per cell with an
+interval excluding zero and decayed monotonically with $n$. And excluding episodes that
+produced no artifact, the bounded arm scores $0.734$ with relay against $0.554$ without:
+relay helps substantially \emph{when it completes} and costs enough exploration budget
+that seven episodes never reached a build --- five under relay and two under a high
+first-contact cost without it, so the failure belongs to any mechanism that consumes extra
+turns, and exposes a harness that answers budget exhaustion by refusing tools rather than
+by forcing a build.
