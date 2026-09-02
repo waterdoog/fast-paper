@@ -23,11 +23,12 @@ delegated task returning a result, or direct access to state. \txt{Edge attribut
 are the beliefs attached to an edge, which change nothing a runtime checks. A study
 that compares an open network to a closed one moves all three and reports one number.
 
-\paragraph{This paper separates them.} We hold the model, the agent runtime, the tasks
-and the coordination kernel fixed, and intervene on formation and semantics as a
-$2\times2$ factorial while seeding relational attributes independently. The kernel is
-an instrument, not a contribution: it lets us set properties that deployed systems
-couple together, and refuse an agent that tries to exceed them.
+\paragraph{This paper separates them.} Holding the model, runtime, tasks and
+coordination kernel fixed, we intervene on formation and semantics as a $2\times2$
+factorial and seed relational attributes independently. The kernel is an instrument,
+not a contribution. This is a controlled experiment on a small graph rather than a study
+of adaptation at web scale: before asking how internet-scale collectives reorganize, it
+is worth establishing which relational variables are interventions at all.
 
 The decomposition is uneven in a way that is not visible without running it. A naive
 public-versus-private contrast of $0.313$ on requirement $F_1$ is three quarters edge
@@ -42,11 +43,6 @@ Edge semantics carries a second result. Opening a counterpart's store raises acc
 slightly and costs 11k tokens an episode; per token spent, delegating to an agent that
 already holds the context is ahead in both arms. Agents can collaborate by exposing
 state or by exposing agency, and the choice has a measurable exchange rate.
-
-\paragraph{Scope.} This is a controlled experiment on a small graph, not a study of
-adaptation at web scale. That is deliberate: before asking how internet-scale agent
-collectives learn and reorganize, it is worth establishing which relational variables
-constitute meaningful interventions at all. Our answer is that two of the three do.
 
 \paragraph{Contributions.}
 \begin{enumerate}[leftmargin=1.4em,itemsep=1pt,topsep=2pt]
