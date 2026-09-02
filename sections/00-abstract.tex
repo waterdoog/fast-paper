@@ -1,19 +1,23 @@
-Agent networks encode relationships in two very different places. Some structure is
-written as \emph{text}---agent cards, reputation fields, stated shared goals, tenure,
-trust labels---and reaches a model only as tokens. Other structure is \emph{enforced
-by architecture}: who is addressable at all, whether a counterpart exposes an
-interface or a readable store, what persists between encounters. The public/private
-distinction is described in the first vocabulary and implemented in the second, and
-the two are rarely separated. We ask which of them changes what agents do. We define
-public and private agent networks over nine relational dimensions, partition them into
-an architectural group that a capability kernel enforces and a textual group that
-exists only as seeded context, and operationalize the architectural group as a
-$2\times2$ factorial over a discovery axis and an access axis, run as configurations
-of one kernel, one runtime, and one model. Deliverables are hidden-profile artifacts
-whose required values are forced by facts distributed across specialists, so primary
-metrics are exact-match and counter-based; three secondary metrics no answer key can
-reach are judged blind and pairwise by a cross-family model with agreement reported.
-We predict the architectural group dominates: equalizing reach removes most of the
-measured gap, store access changes what is possible more than what is done, and
-seeded trust, alignment, accountability and tenure move behavior far less than their
-prominence in agent-network design implies.
+Networked agent systems represent relationships in three different places, and the
+three are routinely compared as one. Some structure decides \emph{who can be reached}:
+which agents a requester may discover and address at all. Some decides \emph{what
+crosses an edge}: whether a counterpart accepts a task and returns a result, or
+exposes a store to be listed and read. The rest is \emph{asserted about an edge}:
+trust scores, stated alignment, attribution, tenure---metadata an individual model
+must interpret. Comparisons of open against closed agent networks vary all three at
+once and attribute the difference to the regime. We separate them. Holding the model,
+the runtime, the tasks and the coordination kernel fixed, we intervene on edge
+formation and edge semantics as a $2\times2$ factorial, and independently seed five
+relational properties as context, using a length-matched placebo to distinguish a
+relational effect from the cost of the tokens carrying it. Across 144 episodes of
+hidden-profile coordination scored against forced-value answer keys, a naive
+public-versus-private contrast of $0.313$ decomposes into $0.232$ from edge formation
+and $0.080$ from edge semantics, with the attribute axis indistinguishable from zero:
+its two nominally significant contrasts, out of 56 tests per beat against a chance
+floor of 2.8, reverse sign between beats of the same episodes, and the two assertions
+deployed reputation systems actually implement---prior trust and attribution---are the
+flattest of the set. Exposing a store buys accuracy but costs 11k tokens an episode,
+so per token spent, delegating to an agent that already holds the context wins in both
+arms. Before asking how internet-scale agent collectives adapt, it is worth knowing
+which relational variables are interventions at all: changing the network changes the
+collective, and describing the relationship does not.

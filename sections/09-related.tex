@@ -1,37 +1,42 @@
 \section{Related work}
 
-\paragraph{Ties, teams, and open innovation.}
+\paragraph{Networked agent infrastructure and protocols.}
+Agent-to-agent task protocols publish a capability card and accept tasks while
+deliberately keeping a counterpart opaque \cite{a2a2025}; broadcast networks for agents
+route published needs and capabilities among strangers while stating that a
+participant's private information does not enter the network \cite{eigenflux}; surveys
+catalogue the wider protocol design space \cite{agentprotocols2025,coral2025}. These
+systems encode precisely the split we intervene on---whether an edge carries a
+delegated task or direct access to state---but to our knowledge none has been evaluated
+for which side of it changes collective behavior.
+
+\paragraph{Discovery, capability representation, and topology.}
+Capability discovery at network scale is the first thrust of current agentic-web
+research, and agent cards are its dominant representation. Our formation axis is an
+intervention on exactly that: which cards a requester may enumerate and address. We
+treat card contents as an experimental variable rather than an interface detail, and
+find that the addressable set matters far more than what the cards say.
+
+\paragraph{Trust, reputation, and coordination.}
+Reputation systems for agent networks assume relational metadata conditions behavior.
+Our attribute axis tests that assumption directly and does not find support for it at
+the level where such metadata is usually carried, which bears on whether
+manipulation-resistant reputation is solving the binding constraint. We are explicit
+that this bounds asserted metadata only, not enforcement-coupled reputation.
+
+\paragraph{Human ties, teams, and information pooling.}
 The intuition that open networks supply variety and bounded ones supply follow-through
-descends from work on weak ties and social capital \cite{granovetter1973}, on
-exploration and exploitation in organizational learning \cite{march1991}, on
-transactive memory and team familiarity \cite{wegner1987}, and on open versus closed
-innovation \cite{chesbrough2003}. That literature studies humans, where the relational
-properties in our textual group are real rather than asserted. We take its dimensions
-and ask a question it cannot: whether a model acts on them when they arrive as text.
+descends from work on weak ties \cite{granovetter1973}, exploration and exploitation
+\cite{march1991}, transactive memory \cite{wegner1987}, and open innovation
+\cite{chesbrough2003}; that literature studies humans, where the properties in our
+attribute group are real rather than asserted. Our task construction is the
+hidden-profile paradigm \cite{stasser1985}, adopted because it supplies exact ground
+truth and makes pooling rather than retrieval the object of measurement.
 
-\paragraph{Hidden profiles.}
-Our task construction is the hidden-profile paradigm \cite{stasser1985}: information
-required for the correct decision is distributed so that no participant can reach it
-alone. We adopt it because it supplies exact ground truth and because it makes
-pooling, rather than retrieval, the object of measurement.
-
-\paragraph{Agent protocols and networks.}
-Agent-to-agent task protocols expose a capability card and accept tasks while
-deliberately keeping a counterpart opaque \cite{a2a2025}; broadcast networks for
-agents route published needs and capabilities among strangers while stating that a
-participant's private information does not enter the network \cite{eigenflux};
-surveys of the emerging protocol landscape catalogue the design space
-\cite{agentprotocols2025,coral2025}. These systems encode exactly the split we study,
-between exposing an interface and exposing a store, but to our knowledge none has been
-evaluated for which side of the split changes agent behavior.
-
-\paragraph{Capabilities and delegation.}
-The authority model is object-capability discipline \cite{miller2006}: authority is
-held rather than named, delegation may only attenuate, and a message conveys intent
-rather than permission. We rely on it so that a condition is a set of grants a kernel
-checks, not a convention an agent could ignore.
-
-\paragraph{LLM judges.}
-Where an answer key cannot reach, we use pairwise blind comparison \cite{zheng2023},
-with a cross-family judge because evaluators favour their own generations
-\cite{panickssery2024}, and we report agreement rather than assuming it.
+\paragraph{Capabilities and evaluation.}
+The authority model is object-capability discipline \cite{miller2006}, so a condition
+is a set of grants a kernel checks rather than a convention an agent could ignore.
+Where an answer key cannot reach, blind pairwise comparison with a cross-family judge
+is the standard remedy \cite{zheng2023}, since evaluators favour their own generations
+\cite{panickssery2024}; we preregistered such a protocol but did not run it, and no
+result here depends on a judge.

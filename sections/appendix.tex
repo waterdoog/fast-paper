@@ -1,17 +1,86 @@
 \section{Hypothesis-to-figure map}
+\label{app:map}
 \TODO{Frozen before runs; reproduced here so the analysis plan is auditable.}
+
+\section{Scoring rules fixed before key authoring}
+\label{app:scoring}
+Three rules are fixed before any key is written. The schema---field names, types, and
+the full enumeration vocabulary---is given to the agent, so that only values are unknown
+and we are not measuring whether a model guesses our vocabulary. Normalization is
+specified in advance: numbers parsed and compared exactly, dates ISO-8601, strings
+casefolded and trimmed, enumerations restricted to the supplied list, lists compared as
+sets. Evidence is matched on values rather than on internal identifiers, which agents
+never see.
+
+\section{Controls and preregistration}
+\label{app:controls}
+One model across all agents and all cells; one runtime; one kernel. Identical task
+prompts, deliverable schemas, scoring functions, token budgets, and seed distributions.
+Rate limits and loop bounds are logged per episode rather than absorbed into results.
+Rubrics, schemas, normalization rules and the scorer signature are frozen before any
+run; the mapping from each hypothesis to the figure that tests it is fixed in advance
+and reproduced in Appendix~\ref{app:map}.
+
+\section{Threats to validity}
+\label{app:threats}
+A null on the textual group could be a prompt-engineering artifact rather than a
+property of the runtime: a stronger seed, placed differently in context, might move
+behavior. We mitigate by seeding at three intensities and reporting the dose-response,
+and by including the \dimname{relationship origin} condition, which is the weakest
+possible seed and therefore the cleanest test of whether framing alone does anything. A
+null could also be a ceiling effect if the tasks are too easy to differentiate
+configurations; \metric{realization} is reported partly to detect this.
 
 \section{Deliverable schemas and normalization rules}
 \TODO{Both projections of each scenario; the full enumeration vocabularies handed to
-agents; the normalization rules fixed before key authoring.}
+agents.}
 
 \section{Directory construction}
-\TODO{Card counts by group (fact-bearing, near-miss, noise), the shared tag
-vocabulary, and the roster compositions realizing each level of external fraction.}
+\TODO{Card counts by group (fact-bearing, near-miss, noise), the shared tag vocabulary,
+and the roster compositions realizing each level of external fraction.}
 
-\section{Seeding prompts}
-\TODO{Verbatim seed text for each of the five textual dimensions at each intensity,
-and the control text.}
+\section{Seeding protocol}
+\label{app:seeds}
+\begin{table}[h]
+\centering\small
+\caption{Seeding protocol. Each dimension is asserted as context in the seeded
+condition and omitted in the control; everything else, including the architectural
+configuration, is held fixed. The readout column names the behavioral quantity that
+should move if the seeded property is doing any work.}
+\label{tab:seeding}
+\begin{tabular}{@{}p{2.5cm}p{6.6cm}p{4.3cm}@{}}
+\toprule
+\textbf{Dimension} & \textbf{Seed} & \textbf{Readout} \\
+\midrule
+\dimname{Prior trust} &
+Requester memory is pre-populated with an interaction record: three prior exchanges
+with a named counterpart, all accurate. &
+Verification actions per obtained value; cross-checks against a second holder. \\
+\addlinespace
+\dimname{Shared goals} &
+The counterpart's context states the requester's objective as its own, versus a
+divergent one (bills per answer; minimizes its own effort). &
+Answer completeness; unsolicited volunteering; refusal rate. \\
+\addlinespace
+\dimname{Accountability} &
+The counterpart is told its answers are logged, attributed, and that accuracy is
+written back to a record others read, versus anonymous and unlogged. &
+Error rate; rate of explicit ``I do not hold that''. \\
+\addlinespace
+\dimname{Exit cost} &
+The counterpart may decline or fall silent without consequence, versus being
+obligated to respond. &
+Decline rate; retries the requester must spend. \\
+\addlinespace
+\dimname{Relationship origin} &
+Narrative framing only: ``you found this agent on an open board'' versus ``this is a
+teammate of two years''. \emph{Nothing else differs.} &
+Any movement at all in the primary metrics. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\TODO{Verbatim seed text for each profile.}
 
 \section{Reproducibility}
 \TODO{Kernel version, runtime version, model identifiers, seeds, and the command that

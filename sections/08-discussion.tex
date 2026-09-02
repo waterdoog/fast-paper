@@ -1,42 +1,76 @@
 \section{Discussion and limitations}
 
-\paragraph{If architecture dominates.}
-The immediate implication is for where design effort goes. Agent cards are acquiring
-reputation fields, alignment declarations and relationship summaries on the assumption
-that a model will act on them. If the textual group is inert, that surface is
-decoration, and the same effort spent making the runtime enforce something---a grant
-that expires, a namespace that persists, a directory that is actually bounded---buys
-behavior change that text does not. It would also mean that published comparisons of
-open against closed agent networks are, to a first approximation, reporting the effect
-of membership.
+\subsection{The formation advantage is a reach advantage}
 
-\paragraph{If the textual group is not inert.}
-Then the paper reports elasticities rather than a null, and those are directly usable:
-how much verification a trust assertion removes, how much error an accountability
-assertion prevents, whether framing alone shifts a stopping rule. We would then expect
-follow-up work on which assertions survive an adversarial counterpart, since a
-relational claim that changes behavior is also a relational claim worth forging.
+$\Delta_\text{formation}$ is not a constant. It tracks how much of what a task needs
+sits outside the roster, and it collapses when reach stops being scarce.
 
-\paragraph{Limitations.}
-\emph{Seeded relational properties are assertions, not relationships}
-(Section~\ref{sec:seeding}); the study measures runtime sensitivity to asserted
-context and nothing stronger. \emph{The cold-phase crossing is designed}, and only its
-location, cost and realization are measured. \emph{Forced-value deliverables cannot
-capture whether an artifact is well argued}, which is the price of removing the judge
-from the primary metrics; the three judged metrics recover part of it under stated
-conditions and with agreement reported. \emph{The study runs on a reference
-implementation of the coordination kernel, not on a production deployment}: the
-architectural knobs and the capability model are drawn from deployed source, but the
-runs are not deployment traces, and we describe the work as measured on a reference
-kernel rather than as a deployment study. Finally, \emph{one model family carries the
-main sweep}; a replication on a second family is reported, but relational sensitivity
-is plausibly model-specific and we do not claim otherwise.
+\begin{center}\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+& $E = 0.3$ & $E = 0.7$ \\
+\midrule
+cold   & $+0.112$ & $+0.352$ \\
+rework & $\mathbf{-0.037}$ & $+0.265$ \\
+warm   & $+0.148$ & $+0.391$ \\
+\bottomrule
+\end{tabular}
+\end{center}
 
-\paragraph{Threats to validity we can name in advance.}
-A null on the textual group could be a prompt-engineering artifact rather than a
-property of the runtime: a stronger seed, placed differently in context, might move
-behavior. We mitigate by seeding at three intensities and reporting the dose-response,
-and by including the \dimname{relationship origin} condition, which is the weakest
-possible seed and therefore the cleanest test of whether framing alone does anything.
-A null could also be a ceiling effect if the tasks are too easy to differentiate
-configurations; \metric{realization} is reported partly to detect this.
+At a low external fraction the gap is a third of its high-$E$ value, and on the rework
+beat---where the task must return to a counterpart it has already used---the point
+estimate reverses: the bounded network is ahead. Averaged over beats, the formation
+effect halves on rework ($0.232 \to 0.114$).
+
+We report the reversal as suggestive rather than established: it is a subcell point
+estimate and we do not attach an interval to it. But the pattern across the table is
+consistent and it bounds the headline. The open network wins because it can address
+holders the bounded one cannot; where the bounded roster already contains the holders,
+and where the work requires going back to them, that advantage is largely spent.
+
+\subsection{Forming an edge is free here, and that is the main limitation}
+
+In this design, addressing a stranger costs exactly what addressing a teammate costs.
+The requester searches a directory and sends a message; there is no negotiation, no
+context transfer, no format alignment, no establishing what a counterpart can actually
+do.
+
+This removes the economic reason relationships exist. An open arm with a hundred
+addressable holders at zero acquisition cost is closer to an oracle than to a network,
+and the formation effect we measure should be read as an upper bound: it is what open
+discovery is worth \emph{when discovery is free}. A per-new-edge cost---an onboarding
+exchange, a latency penalty, a token charge on first contact---is the single variable
+most likely to move the ranking, and we have not run it. We flag it as the first
+experiment a follow-up should do rather than as a caveat to be waved at.
+
+\subsection{What the attribute null does and does not bound}
+
+The null covers the weakest form of relational encoding: a sentence asserted in
+context. It does not bound trust wired into routing, memory, retrieval, or permission
+policy, which is where reputation lives in deployed systems and where it can change
+what an agent is able to do rather than what it is told.
+
+Two features of the design also work against detecting an attribute effect, and we
+state them rather than let them read as strength. Our tasks give a requester no way to
+\emph{verify} an answer---there is no second holder to cross-check against---so an
+assertion of prior trust has no verification cost to save, which is the main channel
+through which trust would be expected to act. And no counterpart lies strategically:
+distractors are static, so a reputation signal has no adversary to defend against.
+A relational property that matters mainly for defence cannot show its value in a
+setting with nothing to defend against.
+
+\subsection{Other limitations}
+
+The cold-phase crossing between regimes follows from how we allocate facts and is not a
+discovery; only its location, cost and realization are measured. Forced-value
+deliverables cannot capture whether an artifact is well argued, which is the price of
+removing the judge from every primary metric. The study runs on a reference
+implementation of the coordination kernel rather than a production deployment: the
+interventions and the capability model are drawn from deployed source, but the runs are
+not deployment traces. One model family carries the sweeps, and relational sensitivity
+is plausibly model-specific.
+
+Finally, this is a small graph observed over four beats, not a continually adapting
+collective at web scale. That is deliberate. Before asking how internet-scale agent
+networks learn and reorganize, it is worth knowing which relational variables are
+interventions at all---and two of the three we tested are.

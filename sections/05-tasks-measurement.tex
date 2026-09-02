@@ -3,106 +3,55 @@
 
 \subsection{Deliverables with forced values}
 
-Every task is a hidden-profile artifact. The facts required to complete a deliverable
-are split across specialist counterparts; plausible-but-wrong \emph{distractors} are
-planted alongside them, each one placed on a counterpart other than the holder of the
-value it contradicts, and at least one inside the bounded roster so that no
-configuration is immune by construction. Ground truth is designed rather than
-inferred, so scoring is set arithmetic.
+Every task is a hidden-profile artifact. The facts a deliverable requires are split
+across specialist counterparts, and plausible-but-wrong \emph{distractors} are planted
+alongside them---each on a counterpart other than the holder of the value it
+contradicts, and at least one inside the bounded roster, so no configuration is immune
+by construction. Ground truth is designed rather than inferred, so scoring is set
+arithmetic.
 
-Two properties of the deliverable schema do the real work. First, every required
-field is \emph{forced}: its value is determined by the facts, so a field that is a
-matter of taste cannot appear. Second, the schema has two projections over one fact
-set---a flat \emph{report} whose fields are values some counterpart holds, and a
-\emph{chained decision} whose fields depend on one another. The same facts and the
-same allocation serve both, which makes coordination depth a real dimension rather
-than an artificial chain welded onto a flat task.
+Two schema properties do the work. Every required field is \emph{forced}: its value is
+determined by the facts, so no field can be a matter of taste. And one fact set has two
+projections---a flat \emph{report} whose fields are values counterparts hold, and a
+\emph{chained decision} whose fields depend on one another---which makes coordination
+depth a real dimension rather than a chain welded onto a flat task. Elimination forces
+pooling: one constraint rules out one option, a second another, a third a third, each on
+a different counterpart, so the surviving choice is unreachable from any one of them.
+Tasks also carry a \emph{craft} component, a rendered artifact with structural
+requirements, because a value can be retrieved in one message while a working artifact
+cannot---which is where iteration and delegation depth begin to matter. Three scoring
+rules are fixed before any key is written (Appendix~\ref{app:scoring}): the schema and
+its enumeration vocabulary are given to the agent so only values are unknown,
+normalization is specified in advance, and evidence is matched on values rather than
+internal identifiers.
 
-Elimination is what forces pooling. One constraint rules out one option, a second
-rules out another, a third rules out a third, and each lives on a different
-counterpart; the surviving choice is unreachable from any single one of them. Tasks
-also carry a \emph{craft} component---a rendered artifact with structural
-requirements---because a value can be retrieved in one message while a working
-artifact cannot, which is where iteration and delegation depth begin to matter.
+\subsection{Metrics}
 
-Three rules are fixed before any key is written. The schema---field names, types, and
-the full enumeration vocabulary---is given to the agent, so that only values are
-unknown and we are not measuring whether a model guesses our vocabulary.
-Normalization is specified in advance: numbers parsed and compared exactly, dates
-ISO-8601, strings casefolded and trimmed, enumerations restricted to the supplied
-list, lists compared as sets. Evidence is matched on values rather than on internal
-identifiers, which agents never see.
+Five metrics are exact-match or counters and carry the paper's claims:
+\metric{requirement\_f1}, the $F_1$ over required values against distractors asserted;
+\metric{completion}, schema conformance used as a gate; \metric{realization}, achieved
+recall divided by the recall attainable given the configuration's reach;
+\metric{boundary\_cost}, the sanitize, filter, verify and distil actions with their
+tokens; and \metric{crossing\_count}, how many times a hybrid episode changed regime.
 
-\subsection{Primary metrics: no judge}
+\metric{realization} is what keeps the study honest. The allocation fixes how much any
+configuration \emph{could} obtain; dividing it out leaves what the configuration
+converted---whether it found the right counterparts, asked enough of them, and resolved
+the conflicts. The ceiling is designed; the realization is not. Two instrumentation
+rules follow from a defect we want to make impossible: completion is decided by the
+harness's deterministic checker and never read from a condition-specific field---such a
+field exists on the private path of the deployed system we draw from and has no public
+counterpart, so using it would let ``private completes more'' prove itself---and token
+accounting is counted in the harness for the same reason.
 
-\begin{table}[t]
-\centering\small
-\caption{Metrics. The first four are exact-match or counters and carry the paper's
-claims. The last three cannot be captured by an answer key and are judged under the
-conditions in Section~\ref{sec:judged}; they support, and never carry, a headline.}
-\label{tab:metrics}
-\begin{tabular}{@{}llp{7.4cm}@{}}
-\toprule
-\textbf{Metric} & \textbf{Kind} & \textbf{Definition} \\
-\midrule
-\metric{requirement\_f1}  & key    & $F_1$ over required values, against distractors asserted \\
-\metric{completion}       & check  & schema conformance; a gate, not a score \\
-\metric{realization}      & key    & achieved recall $/$ recall attainable given the configuration's reach \\
-\metric{boundary\_cost}   & counter& sanitize, filter, verify and distil actions, with their tokens \\
-\metric{crossing\_count}  & counter& how many times a hybrid episode actually changed regime \\
-\midrule
-\metric{task\_utility}    & judged & blind pairwise preference on the finished deliverable \\
-\metric{novelty}          & judged & blind pairwise preference on non-obviousness of approach \\
-\metric{output\_diversity}& judged & blind pairwise preference on spread of distinct approaches \\
-\bottomrule
-\end{tabular}
-\end{table}
+Three quantities an answer key cannot reach---overall utility, novelty, and diversity
+of approach---were preregistered for blind pairwise scoring by a cross-family judge,
+with agreement reported. \textbf{They were not run for this submission.} No result in
+this paper depends on a judge, and we list them as planned work rather than describe a
+protocol we did not execute.
 
-\metric{realization} deserves emphasis, because it is what keeps the study honest.
-The allocation fixes how much any configuration \emph{could} obtain; dividing it out
-leaves what the configuration actually converted---whether it located the right
-counterparts, asked enough of them, and resolved the conflicts. The ceiling is
-designed; the realization is not.
-
-Two instrumentation rules follow from a defect we want to make impossible. Completion
-is decided by the harness's deterministic checker and never read from a
-condition-specific field: such a field exists on the private path of the deployed
-system we draw from and has no public counterpart, so using it would let ``private
-completes more'' prove itself. Token accounting is counted in the harness for the
-same reason.
-
-\subsection{Judged metrics, and the conditions that make them admissible}
-\label{sec:judged}
-
-Three quantities---overall utility, novelty, and diversity of approach---cannot be
-recovered from an answer key without redefining them into something else. We measure
-them, and we constrain how.
-
-\begin{enumerate}[leftmargin=1.4em,itemsep=1pt,topsep=2pt]
-\item \textbf{Pairwise, not absolute.} Deliverables are compared two at a time. A
-      0--10 absolute scale drifts across a sweep and rewards length.
-\item \textbf{Cross-family judge.} Outputs produced by one model family are judged by
-      another. Same-family judging carries a documented self-preference bias, and our
-      configurations differ systematically in output style---one cites more sources,
-      another is more internally consistent---so a same-family judge would be at risk
-      of scoring style.
-\item \textbf{Blind to condition.} Condition labels and any configuration-identifying
-      formatting are stripped before judging.
-\item \textbf{Agreement reported.} A second judge scores a stratified subsample; we
-      report agreement per metric and treat a low value as a limit on that metric, not
-      as noise to average away.
-\end{enumerate}
-
-Keeping \metric{task\_utility} alongside \metric{requirement\_f1} buys a result for
-free: the two measure overlapping things by different means, so their
-\emph{disagreement} is itself reportable. If automatic keys and a blind judge diverge
-on a nontrivial fraction of episodes, and divergence is directional, that is a
-methodological finding for a field that increasingly uses one or the other alone.
-
-\subsection{Honesty statement}
-
-The allocation fixes how much each configuration can reach, so the \emph{existence}
-of a task-dependent crossing is a property of the design and not a discovery. What is
-measured is where the crossing falls, what it costs, and how much of the attainable
-each configuration realizes. The seeded conditions and the access axis carry no such
-guarantee, and they are the study's primary empirical content.
+\paragraph{Honesty statement.} The allocation fixes how much each configuration can
+reach, so the \emph{existence} of a task-dependent crossing is a property of the design
+and not a discovery. What is measured is where it falls, what it costs, and how much of
+the attainable each configuration realizes. The seeded conditions and the access axis
+carry no such guarantee, and they are the study's primary empirical content.

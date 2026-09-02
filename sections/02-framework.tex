@@ -1,41 +1,30 @@
-\section{Two regimes, nine dimensions}
+\section{Three places a relationship can live}
 \label{sec:framework}
 
-\subsection{Definition}
-
-A \textbf{public} agent network is one in which interaction does not require a
-pre-existing relationship: participation is open or nearly so, counterparts are
-found by relevance, and an encounter is not presumed to repeat. A \textbf{private}
-agent network is membership-bounded and its relationships predate the task: the
-agents act for people who are already colleagues, and interaction is expected to
-continue. A \textbf{hybrid} regime is neither a blend nor a recruitment funnel; it is
-a single task that \emph{switches regime by phase}---a private core states the
-problem, sanitizes it, consults a public periphery to widen the possibility space,
-then returns to the private side to narrow the decision space, commit, and execute.
-Public expands what is possible; private is where something is promised.
-
-Table~\ref{tab:dims} states the nine dimensions along which the two regimes differ.
-The first column is not new; versions of it appear throughout the literature on ties,
-teams, and open innovation. What is new is the partition.
+Take the network as the unit of analysis: agents are nodes, and a request from one to
+another is an edge. Relational structure then sits in exactly three places, and only
+the first two are things a coordination layer checks.
 
 \begin{table}[t]
 \centering\small
-\caption{Nine relational dimensions, partitioned by where they live. The
-\arch{architectural} group is enforced by the coordination kernel: an agent cannot
-argue its way past them. The \txt{textual} group reaches the model only as tokens.
-The paper's central question is the ratio of their effect sizes.}
+\caption{Nine relational dimensions from the literature on ties, teams and open
+innovation, mapped onto the part of the graph each one lives in. Only the first two
+groups are enforced; the third reaches a model as tokens. The paper measures all three
+against each other.}
 \label{tab:dims}
 \begin{tabular}{@{}llll@{}}
 \toprule
-& \textbf{Dimension} & \textbf{Public} & \textbf{Private} \\
+& \textbf{Dimension} & \textbf{Open network} & \textbf{Bounded network} \\
 \midrule
-\multirow{4}{*}{\rotatebox{90}{\arch{\footnotesize architectural}}}
-& \dimname{Membership openness}    & open                & bounded roster \\
-& \dimname{Shared-state depth}     & shallow, per-contact & deep, persistent \\
-& \dimname{Repeated interaction}   & uncertain            & expected \\
-& \dimname{Identity continuity}    & weak                 & strong \\
+\multirow{2}{*}{\rotatebox{90}{\arch{\scriptsize formation}}}
+& \dimname{Membership openness}    & open directory       & bounded roster \\
+& \dimname{Identity continuity}    & weak, per-contact    & stable, re-addressable \\
 \midrule
-\multirow{5}{*}{\rotatebox{90}{\txt{\footnotesize textual}}}
+\multirow{2}{*}{\rotatebox{90}{\arch{\scriptsize semantics}}}
+& \dimname{Shared-state depth}     & answer only          & store may be listed and read \\
+& \dimname{Repeated interaction}   & edge discarded       & edge persists across tasks \\
+\midrule
+\multirow{5}{*}{\rotatebox{90}{\txt{\scriptsize attributes}}}
 & \dimname{Relationship origin}    & relevance matching   & prior social or organizational tie \\
 & \dimname{Prior trust}            & low                  & higher \\
 & \dimname{Shared goals}           & often absent         & usually present \\
@@ -45,38 +34,45 @@ The paper's central question is the ratio of their effect sizes.}
 \end{tabular}
 \end{table}
 
-\subsection{Why the partition is the contribution}
+\paragraph{Edge formation.} Which edges a requester may create: the scope of the
+directory it can enumerate and address. This is the axis the word ``public'' most often
+refers to, and the one broadcast networks for agents are built around---an agent
+publishes what it needs and what it offers, and the network routes to whoever is
+relevant \cite{eigenflux}.
 
-Nine dimensions are not nine degrees of freedom. In any deployed system they are
-heavily coupled: open membership tends to come with weak identity, which tends to
-come with diffuse accountability and low exit cost. Presenting them as a flat list
-implies an independence that does not exist and invites a study that varies all of
-them at once and attributes the result to whichever one the authors find most
-interesting.
+\paragraph{Edge semantics.} What an existing edge carries. A counterpart may accept a
+task and return a result while revealing nothing else, or expose a store to be listed
+and read. The distinction is not ours: it separates agent-to-agent task protocols,
+which deliberately keep a counterpart opaque \cite{a2a2025}, from granted resource
+scopes, in which one principal hands another read access to files. A capability kernel
+expresses both as capabilities over different namespaces, so a condition is a set of
+grants rather than a different codebase.
 
-The partition breaks the coupling in the one way a controlled study can. The
-\arch{architectural} four are properties of the coordination layer. They can be set
-independently, they are checked on every call, and a model has no way to circumvent
-them. The \txt{textual} five are properties of the people behind the agents. A
-harness cannot instantiate them; it can only \emph{assert} them---which is precisely
-what a real agent card, reputation field, or relationship-history summary does.
+\paragraph{Edge attributes.} What is asserted \emph{about} an edge: a reputation
+score, a stated shared objective, a record of prior collaboration, a claim that answers
+are logged and attributed. These are the field's most common steering lever, and they
+rest on an assumption---that an agent builds some representation of its counterpart
+from what it is told and acts differently because of it. Nothing in a runtime checks
+them.
 
-That is not a limitation to apologize for. It is the experiment. Deployed agent
-networks already communicate trust, alignment, accountability and tenure as text, on
-cards and in context windows. Asking whether a model acts on that text is asking
-whether a large and growing part of agent-network design does anything.
+\subsection{Why the grouping is the contribution}
 
-\subsection{The claim}
+Nine dimensions are not nine degrees of freedom. In a deployed system they are heavily
+coupled: an open directory tends to come with weak identity, which comes with diffuse
+accountability and low exit cost. A study that compares an open network to a bounded
+one moves all nine and reports one number, then attributes it to whichever dimension
+the authors find most interesting.
 
-We predict a large asymmetry: the architectural group moves outcomes, the textual
-group moves them little, and the gap between them is larger than the design
-literature would suggest. Two consequences follow if this holds. First, comparisons
-of ``public'' against ``private'' networks that do not equalize architecture are
-measuring membership, not relationship. Second, effort spent enriching relational
-metadata is misallocated relative to effort spent making the runtime enforce
-something.
+The grouping breaks the coupling in the one way a controlled study can. Formation and
+semantics are properties of the interaction layer: independently settable, checked on
+every call, and not open to argument by a model. Attributes are properties of the
+people behind the agents; a harness cannot instantiate them, only \emph{assert} them.
 
-Both outcomes are publishable. If seeded trust does reduce verification cost and
-seeded accountability does reduce error, that is a positive result with an immediate
-design implication---relational metadata works, and here is the elasticity. Our
-prediction is the reverse, and we state it in advance so that it can fail.
+That is not a limitation to apologize for---it is the experiment. Deployed networks
+already communicate trust, alignment, attribution and tenure as text on cards, so
+asking whether a model acts on that text is asking whether a large and growing part of
+agent-network design does anything. Both outcomes are useful. If attributes move
+behavior, the measurement is an elasticity that card and protocol design can use
+directly. If they do not, then reputation and relationship metadata are not a control
+surface, and a manipulation-resistant reputation system is solving a problem one layer
+above the one that binds.

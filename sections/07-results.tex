@@ -1,34 +1,124 @@
 \section{Results}
 \label{sec:results}
 
-\TODO{This section is written after the runs. The structure below is fixed in advance
-so that the analysis cannot be steered by the data; each subsection names the
-hypothesis it tests and the figure that carries it.}
+All numbers below come from 144 episodes on one kernel, one runtime, and one
+model: 72 for the $2\times2$ over edge formation and edge semantics, 72 for the
+attribute axis. Bootstrap intervals are percentile over episodes, resampled
+within cell.
 
-\subsection{Architectural versus textual effect sizes (\hyp{h:arch})}
-\TODO{Figure 2: effect size per dimension, architectural group against textual group,
-with bootstrap 95\% intervals. The headline number is the ratio of the two group
-means.}
+\subsection{A naive public-versus-private comparison, decomposed}
 
-\subsection{Separating discovery from access (\hyp{h:reach})}
-\TODO{Table 4: the four cells; $\Delta_{\text{access}}$ and
-$\Delta_{\text{discovery}}$ with intervals. Include the pilot's $B$--$D$ contrast as
-the historical bound.}
+The contrast a study of ``public against private'' would report is
+open+store against bounded+sandbox: $0.313$ on requirement $F_1$ at the cold
+beat. It decomposes almost exactly additively into the two interventions.
 
-\subsection{Where sandboxed access wins (\hyp{h:lossy})}
-\TODO{Figure 3: \metric{requirement\_f1} by access condition, split by decomposable
-versus join-requiring fields.}
+\begin{table}[t]
+\centering\small
+\caption{Requirement $F_1$ at the cold beat, by cell, and the two main effects.
+The naive regime contrast is $0.313$; three quarters of it is who can be
+reached and one quarter is what crosses the edge.}
+\label{tab:main}
+\begin{tabular}{@{}lccl@{}}
+\toprule
+& \textbf{sandboxed} & \textbf{readable} & \\
+\midrule
+\textbf{open}    & 0.777 & 0.920 & \\
+\textbf{bounded} & 0.607 & 0.625 & \\
+\midrule
+\multicolumn{4}{@{}l}{$\Delta_\text{formation} = 0.232$\quad 95\% CI $[0.127, 0.316]$\quad excludes 0} \\
+\multicolumn{4}{@{}l}{$\Delta_\text{semantics} = 0.080$\quad 95\% CI $[-0.011, 0.175]$\quad spans 0} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\subsection{Affordance use (\hyp{h:afford})}
-\TODO{Figure 4: tool-call distribution with and without \texttt{list}/\texttt{read}
-available; memory reuse rate across phases.}
+\subsection{Edge formation dominates (H1)}
 
-\subsection{Misinformation absorption (\hyp{h:pollute})}
-\TODO{Table 5: absorption rate normalized by exposure, by access condition.}
+Across seven tests---four accuracy metrics and three cost metrics, over the cold,
+rework and warm beats---$\Delta_\text{formation}$ clears its interval in six.
+Chance at $\alpha = 0.05$ would produce $0.4$. The sign is stable and the
+magnitude is largest where the task most needs outside knowledge:
+at a high external fraction it reaches $0.352$, against $0.112$ when most
+holders sit inside the roster.
 
-\subsection{Optima under seeding (\hyp{h:inert}, \hyp{h:cross})}
-\TODO{Figure 5: $N^{*}$ and $Q^{*}$ curves, seeded against control, overlaid.}
+It is also cheaper. Opening the directory saves $17.1$k tokens per episode
+(CI excludes 0) while raising accuracy, because a requester that can address the
+right holder stops paying for the search around it.
 
-\subsection{Key--judge agreement}
-\TODO{Rate and direction of divergence between \metric{requirement\_f1} and
-\metric{task\_utility}; inter-judge agreement per judged metric.}
+\subsection{Edge semantics: a small gain at a real price (H3)}
+
+$\Delta_\text{semantics}$ clears in two of the same seven tests, against a
+chance floor of $0.4$. The sign is positive in all three beats
+($0.080$, $0.028$, $0.098$) but only the warm beat's interval excludes zero, so
+we report it as small and underpowered rather than absent.
+
+The cost side is unambiguous, and it inverts the ranking. Reading a
+counterpart's store costs $11.0$k tokens per episode (CI excludes 0). Per token
+spent, agent mediation is ahead in both arms:
+
+\begin{center}\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+& sandboxed & readable & ratio \\
+\midrule
+open    & 0.177 & 0.157 & $1.13\times$ \\
+bounded & 0.094 & 0.087 & $1.08\times$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\noindent
+$F_1$ per 10k tokens. Exposing state buys a little accuracy; delegating to an
+agent that already holds the context buys more of it per unit of context spent.
+This is the tradeoff between moving data to the computation and moving the
+computation to the data, measured on an agent network.
+
+\subsection{Edge attributes are inert (H2)}
+
+The attribute axis asserts five relational properties in context---prior trust,
+attribution, a two-year colleague framing, a stranger framing, and a
+length-matched placebo---with the network configuration held fixed.
+
+\begin{table}[t]
+\centering\small
+\caption{Attribute contrasts on requirement $F_1$, stratified by (arm, scenario)
+over four strata, $n=12$ per profile. The placebo matches the relational seeds
+in line count, position and register while carrying no relational content.}
+\label{tab:attrs}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{contrast} & \textbf{cold} & \textbf{warm} & \\
+\midrule
+placebo $-$ control \hfill\textit{added text alone} & $+0.005$ & $-0.014$ & spans 0 \\
+trust $-$ control                                    & $-0.010$ & $+0.017$ & spans 0 \\
+attribution $-$ control                              & $-0.046$ & $+0.015$ & spans 0 \\
+colleague $-$ placebo                                & $-0.088$ & $\mathbf{+0.074}$ & sign flips \\
+stranger $-$ placebo                                 & $\mathbf{-0.116}$ & $+0.042$ & sign flips \\
+colleague $-$ stranger \hfill\textit{narration only} & $+0.029$ & $+0.032$ & spans 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two results matter here. First, the placebo settles the alternative explanation:
+two lines of neutral text, matched for length and position, cost $+0.005$ with an
+interval spanning zero. Whatever the relational seeds do, they do not do it by
+occupying tokens.
+
+Second, nothing survives. Eight contrasts across seven metrics is 56 tests per
+beat, so chance alone yields about $2.8$; two cleared, and they cleared \emph{in
+opposite directions in different beats of the same episodes}. The narration
+instrument---the cleanest of the set, differing in one sentence and nothing
+else---is flat at $0.029$. The two assertions that deployed reputation systems
+actually implement, prior trust and attribution, are the flattest of all.
+
+\subsection{Summary}
+
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{intervention} & \textbf{effect} & \textbf{tests cleared} & \textbf{cost} \\
+\midrule
+edge formation  & $0.232$ & 6/7 \quad (floor 0.4) & $-17.1$k tokens \\
+edge semantics  & $0.080$ & 2/7 \quad (floor 0.4) & $+11.0$k tokens \\
+edge attributes & $\approx 0$ & 2/56 \quad (floor 2.8), signs flip & $+0.005$ \\
+\bottomrule
+\end{tabular}
+\end{center}

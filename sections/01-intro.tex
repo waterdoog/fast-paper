@@ -2,67 +2,70 @@
 
 Two pictures of an agent network are in circulation. In the first, agents discover
 each other in the open: they publish what they can do, broadcast what they need, and
-are matched by relevance rather than by prior acquaintance. In the second, agents
-act for people who already work together: membership is bounded, interaction repeats,
-context accumulates, and someone is accountable when the work is wrong. The first
-picture is usually called public and the second private, and the difference is
-usually described as a difference in \emph{visibility}.
+are matched by relevance rather than acquaintance. In the second, agents act for
+people who already work together: membership is bounded, interaction repeats, context
+accumulates. The first is called public and the second private, and the difference is
+usually described as one of visibility.
 
-Visibility is the wrong frame, and a deployed system makes that obvious. Whether a
-stranger can \emph{find} an agent and whether that stranger can \emph{read what the
-agent holds} are separately enforced, and they do not co-vary. An open directory can
-front a counterpart that answers questions and reveals nothing; a bounded roster can
-front a counterpart whose entire working store is readable. The interesting question
-is not who can be seen but what crosses the boundary once contact is made---and,
-prior to that, whether the relational language the field uses corresponds to anything
-the runtime enforces at all.
+Visibility is the wrong frame, and it hides that three different things are varying
+at once. Whether a requester can \emph{address} a counterpart is one question.
+Whether that counterpart, once addressed, \emph{answers} or \emph{opens its store} is
+a second, and the two are separately enforced: an open directory can front an agent
+that reveals nothing beyond an answer, and a bounded roster can front one whose
+working files are readable. What is \emph{asserted about} the relationship---a trust
+score, a stated shared objective, a note that the parties have collaborated
+before---is a third, and it lives in a prompt rather than in a mechanism.
 
-That last point is the paper's subject. Agent networks encode relationships in two
-places. Some of it is \arch{architecture}: the directory a requester may enumerate,
-whether a counterpart exposes an interface or a store, whether state persists between
-encounters, whether identity is stable across them. A kernel checks these; an agent
-cannot talk its way past them. The rest is \txt{text}: a trust score on a card, a
-stated shared objective, a note that two parties have collaborated before, a claim
-that answers are logged and attributed. These reach the model as tokens, and whether
-they change behavior is an empirical question that, to our knowledge, has not been
-asked.
+Taking the network as the unit of analysis, these are interventions on different
+parts of the same graph $G = (V, E)$. \arch{Edge formation} is which edges a requester
+may create at all. \arch{Edge semantics} is what an existing edge carries: a
+delegated task returning a result, or direct access to state. \txt{Edge attributes}
+are the beliefs attached to an edge, which change nothing a runtime checks. A study
+that compares an open network to a closed one moves all three and reports one number.
 
-We suspect the answer is uncomfortable. Preliminary work in our own setting suggests
-that once reach is equalized between a public and a private configuration, most of
-the measured difference between them disappears---and reach is the crudest of the
-architectural properties. If the textual group is largely inert on top of that, then
-much of what agent-network design currently invests in---richer cards, reputation
-fields, declared alignment, relationship history surfaced as context---is decoration
-that a runtime does not act on.
+\paragraph{This paper separates them.} We hold the model, the agent runtime, the tasks
+and the coordination kernel fixed, and intervene on formation and semantics as a
+$2\times2$ factorial while seeding relational attributes independently. The kernel is
+an instrument, not a contribution: it lets us set properties that deployed systems
+couple together, and refuse an agent that tries to exceed them.
+
+The decomposition is uneven in a way that is not visible without running it. A naive
+public-versus-private contrast of $0.313$ on requirement $F_1$ is three quarters edge
+formation and one quarter edge semantics. The attribute axis contributes nothing we
+can distinguish from noise: across 56 tests per beat against a chance floor of 2.8,
+two contrasts cleared and they reversed sign between beats of the same episodes, while
+a length-matched placebo rules out the obvious alternative that any added text costs
+the same. Prior trust and attribution---the two properties reputation systems in
+deployed agent networks actually carry---are the flattest measurements in the set.
+
+Edge semantics carries a second result. Opening a counterpart's store raises accuracy
+slightly and costs 11k tokens an episode; per token spent, delegating to an agent that
+already holds the context is ahead in both arms. Agents can collaborate by exposing
+state or by exposing agency, and the choice has a measurable exchange rate.
+
+\paragraph{Scope.} This is a controlled experiment on a small graph, not a study of
+adaptation at web scale. That is deliberate: before asking how internet-scale agent
+collectives learn and reorganize, it is worth establishing which relational variables
+constitute meaningful interventions at all. Our answer is that two of the three do.
 
 \paragraph{Contributions.}
 \begin{enumerate}[leftmargin=1.4em,itemsep=1pt,topsep=2pt]
-\item A definition of public and private agent networks over nine relational
-      dimensions, partitioned into an \arch{architectural} group a kernel enforces
-      and a \txt{textual} group that exists only as seeded context
-      (Section~\ref{sec:framework}).
-\item An operationalization of the architectural group as a $2\times2$ factorial over
-      \emph{discovery} and \emph{access}, run as configurations of a single
-      capability kernel so that a condition differs from another in named values
-      rather than in implementation (Section~\ref{sec:operational}).
-\item A seeding protocol for the textual group, with an explicit validity boundary:
-      we measure whether agents act on asserted relational context, not what trust
-      does in a human network (Section~\ref{sec:seeding}).
-\item A measurement design whose primary metrics require no judge---deliverables are
-      hidden-profile artifacts with forced values---and whose three judged secondary
-      metrics are blind, pairwise, cross-family, and reported with agreement
-      (Section~\ref{sec:measurement}).
-\item Seven predictions chosen for being ones a careful reader would not confidently
-      bet on in advance, together with the falsification condition for each
-      (Section~\ref{sec:design}).
+\item \textbf{A relational representation framework for agent networks.} We separate
+      what is represented structurally in the interaction graph from what is asserted
+      as metadata about agents and edges (\S\ref{sec:framework}).
+\item \textbf{A causal decomposition of open against bounded networks.} A $2\times2$
+      intervention separates edge formation from edge semantics with models, tasks and
+      runtime fixed, so the two main effects are identified rather than summed
+      (\S\ref{sec:operational}).
+\item \textbf{An empirical test of relational metadata as a coordination signal},
+      including a length-matched placebo that separates a relational effect from the
+      cost of the text carrying it (\S\ref{sec:seeding}).
+\item \textbf{A controlled evaluation of collective information pooling.}
+      Hidden-profile deliverables with forced values give exact ground truth without a
+      judge on any primary metric (\S\ref{sec:measurement}).
 \end{enumerate}
 
-\paragraph{What we deliberately do not claim.}
-We do not study how a public stranger becomes a private teammate; the transition is
-instrumented in the deployed system this design is drawn from, but a within-pair
-before/after study is a separate paper. We make no safety claim about either regime:
-both are deny-by-default for action, and we report leakage as a measurement rather
-than a verdict. And we state in advance that the \emph{existence} of a
-task-dependent crossing between regimes is a property of how we allocate facts, not
-a discovery; what is measured is where it falls, what it costs, and how much of the
-attainable each configuration realizes.
+We do not study how a stranger becomes a teammate, and we make no safety claim about
+either regime. We also state in advance that the \emph{existence} of a task-dependent
+crossing between regimes follows from how we allocate facts and is not a discovery;
+what is measured is where it falls and what it costs.

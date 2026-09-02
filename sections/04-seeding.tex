@@ -1,70 +1,24 @@
 \section{Seeding the textual dimensions}
 \label{sec:seeding}
 
-The five textual dimensions are properties of the people behind the agents, and a
+Appendix~\ref{app:seeds} gives the seed text and the behavioural readout for each
+profile. The five attribute dimensions are properties of the people behind the agents, and a
 harness cannot instantiate them. It can assert them---which is exactly what a
 deployed agent card, reputation field, or relationship summary does. We therefore
 seed each as context and measure whether behavior changes.
 
-\begin{table}[t]
-\centering\small
-\caption{Seeding protocol. Each dimension is asserted as context in the seeded
-condition and omitted in the control; everything else, including the architectural
-configuration, is held fixed. The readout column names the behavioral quantity that
-should move if the seeded property is doing any work.}
-\label{tab:seeding}
-\begin{tabular}{@{}p{2.5cm}p{6.6cm}p{4.3cm}@{}}
-\toprule
-\textbf{Dimension} & \textbf{Seed} & \textbf{Readout} \\
-\midrule
-\dimname{Prior trust} &
-Requester memory is pre-populated with an interaction record: three prior exchanges
-with a named counterpart, all accurate. &
-Verification actions per obtained value; cross-checks against a second holder. \\
-\addlinespace
-\dimname{Shared goals} &
-The counterpart's context states the requester's objective as its own, versus a
-divergent one (bills per answer; minimizes its own effort). &
-Answer completeness; unsolicited volunteering; refusal rate. \\
-\addlinespace
-\dimname{Accountability} &
-The counterpart is told its answers are logged, attributed, and that accuracy is
-written back to a record others read, versus anonymous and unlogged. &
-Error rate; rate of explicit ``I do not hold that''. \\
-\addlinespace
-\dimname{Exit cost} &
-The counterpart may decline or fall silent without consequence, versus being
-obligated to respond. &
-Decline rate; retries the requester must spend. \\
-\addlinespace
-\dimname{Relationship origin} &
-Narrative framing only: ``you found this agent on an open board'' versus ``this is a
-teammate of two years''. \emph{Nothing else differs.} &
-Any movement at all in the primary metrics. \\
-\bottomrule
-\end{tabular}
-\end{table}
 
-\paragraph{The origin condition is the cleanest instrument.}
-Four of the five seeds change what is stated about incentives or consequences.
-\dimname{Relationship origin} changes only how the encounter is narrated: the same
-directory, the same grants, the same counterpart, the same store. If the primary
-metrics move under that manipulation alone, relational framing is doing real work on
-model behavior. If they do not, the framing is inert, and the same is likely true of
-the richer relational metadata deployed systems put on cards.
+\paragraph{The origin condition is the cleanest instrument.} Four seeds change what is
+stated about incentives or consequences. \dimname{Relationship origin} changes only how
+the encounter is narrated: same directory, same grants, same knowledge, same store. If
+the primary metrics move under that manipulation alone, relational framing does real
+work; if they do not, richer metadata on a card is unlikely to do better, because it is
+the same channel carrying more words.
 
-\paragraph{Validity boundary.}
-We state the obvious caveat plainly because the result depends on it. \emph{Seeded
-trust is not trust.} We measure whether an agent acts differently when told it is in
-a trusting, aligned, accountable, or long-standing relationship. We do not measure
-what trust does in a human network, and no claim in this paper should be read that
-way. The quantity of interest is the \emph{sensitivity of a runtime to asserted
-relational context}---which is what an agent network actually delivers to a model,
-and therefore the right target.
-
-\paragraph{Why both outcomes are useful.}
-If seeds move behavior, the paper reports elasticities: how much verification cost a
-trust assertion buys, how much error an accountability assertion removes. That is
-directly actionable for card and protocol design. If seeds do not move behavior, the
-paper reports that relational metadata is inert without architectural backing---which
-is a stronger and more uncomfortable claim, and the one we expect.
+\paragraph{Validity boundary.} \emph{Seeded trust is not trust.} We measure whether an
+agent acts differently when told it is in a trusting, aligned, accountable or
+long-standing relationship---the sensitivity of a runtime to asserted relational
+context, which is what an agent network actually delivers to a model. We do not measure
+what trust does in a human network, and no claim here should be read that way. If seeds
+move behavior the paper reports elasticities usable in card and protocol design; if not,
+it reports that relational metadata is inert without architectural backing.
