@@ -18,20 +18,31 @@ existing edge carries: $e_{ij}$ either delegates a task and returns a result, or
   \node[hdr,rotate=90] at (-3.3,0) {\textsf{open}};
   \node[hdr,rotate=90] at (-3.3,-2.0) {\textsf{bounded}};
 
-  \node[cell,fill=arch!8]  (A) at (0,0)      {\textbf{A}\quad 0.777\\[1pt]{\footnotesize the canonical \emph{public} regime}};
-  \node[cell,fill=black!4] (B) at (5.4,0)    {\textbf{B}\quad 0.920};
-  \node[cell,fill=black!4] (C) at (0,-2.0)   {\textbf{C}\quad 0.607};
-  \node[cell,fill=attr!8]  (D) at (5.4,-2.0) {\textbf{D}\quad 0.625\\[1pt]{\footnotesize the canonical \emph{private} regime}};
+  \node[cell,fill=arch!8]  (A) at (0,0)      {\textbf{A}\quad 0.808\\[1pt]{\footnotesize the canonical \emph{public} regime}};
+  \node[cell,fill=black!4] (B) at (5.4,0)    {\textbf{B}\quad 0.911};
+  \node[cell,fill=black!4] (C) at (0,-2.0)   {\textbf{C}\quad 0.596};
+  \node[cell,fill=attr!8]  (D) at (5.4,-2.0) {\textbf{D}\quad 0.627\\[1pt]{\footnotesize the canonical \emph{private} regime}};
 
-  \draw[-{Latex[length=2mm]},thick,attr] (B.south west) -- (C.north east)
-      node[midway,sloped,above,font=\scriptsize\itshape,black] {what a regime comparison reports: 0.313};
+  % Both diagonals meet in the gap between the four cells, so the values go in a key
+  % underneath rather than on the arrows, where they would sit on top of each other.
+  \draw[-{Latex[length=1.8mm]},thick,arch] (A.south east) -- (D.north west);
+  \draw[-{Latex[length=1.8mm]},thick,attr] (B.south west) -- (C.north east);
+
+  \node[anchor=west,font=\footnotesize] at (-2.45,-3.30)
+    {\textcolor{arch}{\rule[0.45ex]{7mm}{1.1pt}}\; $A - D = 0.181$\; \textcolor{black!55}{open+sandbox against bounded+store --- the pairing Table~\ref{tab:axes} describes}};
+  \node[anchor=west,font=\footnotesize] at (-2.45,-3.75)
+    {\textcolor{attr}{\rule[0.45ex]{7mm}{1.1pt}}\; $B - C = 0.314$\; \textcolor{black!55}{open+store against bounded+sandbox}};
 \end{tikzpicture}
-\caption{Requirement $F_1$ at the cold beat. Comparing only the diagonal confounds
-formation with semantics. $B$ and $C$ are the controls that recover both main effects:
-$\Delta_\text{formation} = \frac{1}{2}[(A-C)+(B-D)] = 0.232$ and
-$\Delta_\text{semantics} = \frac{1}{2}[(B-A)+(D-C)] = 0.080$, summing to the 0.313 a
-regime comparison would report as one number. $C$ is not a contrivance: a trusted
-counterpart that answers rather than exposes is the common case inside organizations.}
+\caption{Requirement $F_1$ at the cold beat, over 35--36 delivered episodes a cell.
+\textbf{Both diagonals are honest ``public versus private'' comparisons, and they differ by
+$1.73\times$.} Which one a study reports depends on a bundling choice nobody documents: pair
+open discovery with a sandboxed edge and bounded discovery with a readable one---the pairing
+Table~\ref{tab:axes} describes---and the answer is $0.181$; pair them the other way and it is
+$0.314$. Neither is the effect of anything. The factorial recovers what is:
+$\Delta_\text{formation} = \frac{1}{2}[(A-C)+(B-D)] = 0.248$ and $\Delta_\text{semantics} =
+\frac{1}{2}[(B-A)+(D-C)] = 0.066$. The two diagonals are $\Delta_\text{formation} \pm
+\Delta_\text{semantics}$: on $B-C$ the axes reinforce and the number overstates formation by
+27\%, on $A-D$ they oppose and it understates it by the same 27\%.}
 \label{fig:twobytwo}
 \end{figure}
 

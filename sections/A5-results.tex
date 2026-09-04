@@ -9,24 +9,25 @@ within cell.
 \subsection{A naive public-versus-private comparison, decomposed}
 
 The contrast a study of ``public against private'' would report is
-open+store against bounded+sandbox: $0.313$ on requirement $F_1$ at the cold
+open+store against bounded+sandbox: $0.314$ on requirement $F_1$ at the cold
 beat. It decomposes almost exactly additively into the two interventions.
 
 \begin{table}[t]
 \centering\small
 \caption{Requirement $F_1$ at the cold beat, by cell, and the two main effects.
-The naive regime contrast is $0.313$; three quarters of it is who can be
+The naive regime contrast is $0.314$ on one diagonal and $0.181$ on the other; on the
+first, three quarters of it is who can be
 reached and one quarter is what crosses the edge.}
 \label{tab:main}
 \begin{tabular}{@{}lccl@{}}
 \toprule
 & \textbf{sandboxed} & \textbf{readable} & \\
 \midrule
-\textbf{open}    & 0.777 & 0.920 & \\
-\textbf{bounded} & 0.607 & 0.625 & \\
+\textbf{open}    & 0.808 & 0.911 & \\
+\textbf{bounded} & 0.596 & 0.627 & \\
 \midrule
-\multicolumn{4}{@{}l}{$\Delta_\text{formation} = 0.232$\quad 95\% CI $[0.127, 0.316]$\quad excludes 0} \\
-\multicolumn{4}{@{}l}{$\Delta_\text{semantics} = 0.080$\quad 95\% CI $[-0.011, 0.175]$\quad spans 0} \\
+\multicolumn{4}{@{}l}{$\Delta_\text{formation} = 0.248$\quad 95\% CI $[0.194, 0.302]$\quad excludes 0} \\
+\multicolumn{4}{@{}l}{$\Delta_\text{semantics} = 0.066$\quad 95\% CI $[0.012, 0.119]$\quad excludes 0} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -116,8 +117,8 @@ actually implement, prior trust and attribution, are the flattest of all.
 \toprule
 \textbf{intervention} & \textbf{effect} & \textbf{tests cleared} & \textbf{cost} \\
 \midrule
-edge formation  & $0.232$ & 6/7 \quad (floor 0.4) & $-17.1$k tokens \\
-edge semantics  & $0.080$ & 2/7 \quad (floor 0.4) & $+11.0$k tokens \\
+edge formation  & $0.248$ & 6/7 \quad (floor 0.4) & $-17.1$k tokens \\
+edge semantics  & $0.066$ & 2/7 \quad (floor 0.4) & $+11.0$k tokens \\
 edge attributes & $\approx 0$ & 2/56 \quad (floor 2.8), signs flip & $+0.005$ \\
 \bottomrule
 \end{tabular}

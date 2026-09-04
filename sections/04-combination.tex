@@ -10,16 +10,18 @@ semantics.
 
 \paragraph{The first result of the decomposition is that the space is smaller than it
 looks.} A configuration search is only a search if more than one dimension moves the
-outcome. On the task family we ran, the three weights are roughly $0.23$, $0.08$ and $0$
+outcome. On the task family we ran, the three weights are $0.248$, $0.066$ and $0$
 on requirement $F_1$ (\S\ref{sec:evidence}), and the third is not small---it is
 indistinguishable from two neutral lines of text. \textbf{An axis with zero weight is not a
-dimension.} Eight configurations collapse to four, and since semantics costs 11k tokens an
-episode for a gain whose interval spans zero, four collapse in practice to a choice on
-formation alone.
+dimension.} Eight configurations collapse to four. Semantics survives---$0.066$, interval
+$[+0.012, +0.119]$---but it is charged at 11k tokens an episode, so on this task family the
+four collapse in practice to a choice on formation with a priced option attached.
 
 That collapse is a finding, not a failure of the framework, and it is the kind of finding
 only a decomposition can produce: a study that compared the two corners would have
-reported $0.313$ and had no way to learn that one third of the bundle does nothing. We
+reported one diagonal---$0.181$ or $0.314$, depending on which pairing it happened to
+call public and private---and had no way to learn that one third of the bundle does
+nothing. We
 report it rather than restoring the eight-way search, because the honest next question is
 sharper than an optimisation. \textbf{Is the space two-dimensional everywhere, or only
 here?}

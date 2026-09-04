@@ -15,7 +15,7 @@ tabulated before any contrast.
 \toprule
 \textbf{Sweep} & \textbf{Varied} & \textbf{ep} & \textbf{What it establishes} \\
 \midrule
-\texttt{realistic}   & $2\times2$ $\times$ $E$          & 72  & Main decomposition: $0.232 / 0.080 / \approx\!0$ \\
+\texttt{realistic}   & $2\times2$ $\times$ $E$          & 72  & Main decomposition: $0.248 / 0.066 / \approx\!0$ \\
 \texttt{axis2x2}     & $2\times2$ $\times$ $E$          & 72  & Independent replication of the same \\
 \texttt{matched-E0}  & three arms, $E=0$                & 27  & \textbf{Zero-dose control: the gap disappears} \\
 \texttt{main}        & three arms $\times$ $E$          & 54  & Read-all $\approx$ open; public $-$ private $=+0.240$ \\
@@ -35,6 +35,20 @@ five smoke sweeps    & mechanism checks                 & 15  & Confirm each man
 \input{sections/fig-credulity}
 \input{sections/fig-ladder}
 \fi
+
+\subsection{How the headline cells are computed}
+\label{app:aggregation}
+
+Every number in the $2\times2$ (Figure~\ref{fig:twobytwo}) is the mean over \emph{delivered}
+cold-beat episodes of \texttt{realistic} and \texttt{axis2x2} pooled---the two runs share a
+design, and pooling doubles the cells to 35--36 episodes each. Intervals are percentile
+bootstrap over episodes, resampled jointly across cells so that a contrast between two
+means is resampled as a contrast.
+
+An earlier draft reported this table from \texttt{axis2x2} alone with lost beats scored as
+$F_1 = 0$. One lost cold beat in cell $A$ moved that cell by $0.046$ and both diagonals with
+it, which is the failure mode \S\ref{sec:quantifying} warns about appearing in our own
+headline table. The values here are the corrected ones.
 
 \subsection{Formation: the dose-response and its control}
 \label{app:dose}
