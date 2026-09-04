@@ -14,17 +14,21 @@ between beats of the same episodes, and a length-matched placebo of two neutral 
 moved the score by $+0.005$. Prior trust and attribution, the two properties deployed
 reputation systems actually carry, are the flattest measurements in the set.
 
+\input{sections/fig-dose}
+
 \paragraph{The formation effect is reach, and the dose-response says so.} With
 \metric{E}---the share of required facts outside the roster---as the dose, the contrast
-runs $+0.034$ (95\% CI $[-0.067, +0.137]$, spans zero) at $E=0$, $+0.111$ at $E=0.3$ and
+runs $+0.034$ (95\% CI $[-0.067, +0.137]$, spans zero) at $E=0$ (Figure~\ref{fig:dose}), $+0.111$ at $E=0.3$ and
 $+0.279$ at $E=0.7$. The zero-dose cell is the control the axis had to pass and did: a
 private network that can already reach what a task needs is not worse. The public arm is
 flat across all three doses ($0.823 / 0.791 / 0.803$), so the manipulation is specific to
 the arm it should affect, and the mechanism variable tracks it---the private arm's useful
 sources fall $4.36 \to 3.17 \to 1.26$.
 
+\input{sections/fig-credulity}
+
 \paragraph{A roster sees less bad information and believes more of it.} This is the one
-result we did not design. The private arm is shown roughly a quarter as much planted
+result we did not design (Figure~\ref{fig:credulity}). The private arm is shown roughly a quarter as much planted
 misinformation as the public arm, and writes it into the deliverable
 \emph{more}---$0.269$ against $0.094$ instances per task (difference $+0.175$, CI
 $[+0.105, +0.242]$). When it reaches no one at all it does not decline to answer: across
@@ -33,10 +37,12 @@ the private arms 58 times. Filtering misinformation out before it arrives also r
 the second source that would have caught it, which is the redundancy argument of
 \S\ref{sec:framework} appearing as a failure mode rather than as a benefit.
 
+\input{sections/fig-ladder}
+
 \paragraph{An introduction does work an endorsement does not.} Giving a bounded roster a
 single brokered hop---a roster member may forward a request to a counterpart the
 requester cannot address---recovers $+0.140$ (CI $[+0.073, +0.204]$) of the $0.304$ gap
-to the open arm, replicating independently in three edge-cost strata, and cuts
+to the open arm (Figure~\ref{fig:ladder}), replicating independently in three edge-cost strata, and cuts
 fabrication from $0.223$ to $0.057$ per task. Letting a bounded arm \emph{read} the whole
 directory while keeping deep relationships only inside the roster is statistically
 indistinguishable from full openness ($+0.019$, spans zero). Both are formation

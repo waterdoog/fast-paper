@@ -12,6 +12,8 @@ tokens double. The arm pays for the extra difficulty rather than failing at it. 
 this null with a caveat earned the hard way: our first reading of this sweep was a
 scaling result, and it was an outage (Appendix~\ref{app:retracted}).
 
+\input{sections/fig-rho}
+
 Extrapolating past that range needs a model, and the honest form of it is uncomfortable.
 Let $k$ be the number of search results a requester acts on, $m$ the number of cards
 matching a query, and $\rho$ the correlation between a card's rank and whether its owner
@@ -21,7 +23,7 @@ private state and is not in the index. At $\rho = 0$ the needed holder survives
 truncation with probability $k/m$, which is hopeless past a few thousand cards. But
 $\rho = 0$ is not the honest case, it is the no-signal case: web search retrieves from
 $10^{11}$ documents, so ranking clearly can be good. The question is how good. Under this
-model, $\rho = 0.9$ collapses by $2\times10^5$ cards and reaching $10^6$ requires
+model (Figure~\ref{fig:rho}), $\rho = 0.9$ collapses by $2\times10^5$ cards and reaching $10^6$ requires
 $\rho \approx 0.999$.
 
 That is the point worth making, and it is not ``a better algorithm will fix it''. Web
