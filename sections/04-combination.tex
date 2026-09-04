@@ -1,21 +1,28 @@
-\section{The combination problem}
+\section{From a binary comparison to a configuration problem}
 \label{sec:combination}
 
-Three axes with two settings each give eight configurations, and no deployed network is
-a corner. A roster with an introduction protocol is public on formation for the agents
-it can reach through a broker and private for everyone else; an enterprise workspace is
-private on formation and fully open on semantics. The design question is not which
-regime wins but \textbf{which configuration a given setting should hold}, and that
-requires each axis to be priced separately---which is what \S\ref{sec:quantifying}
-buys.
+Once the bundle is unpacked, the question changes shape. It is no longer which corner
+wins; it is which point in $(F,S,A)$ a given setting should hold. Three binary axes give
+eight configurations, and no deployed network is a corner of them: a roster with an
+introduction protocol is public on formation for whoever a broker can reach and private
+for everyone else; an enterprise workspace is private on formation and fully open on
+semantics.
 
-\paragraph{The axes are not equally live.} A configuration search is only interesting if
-more than one dimension moves the outcome. Our measurements so far
-(\S\ref{sec:evidence}) put the three weights at roughly $0.23$, $0.08$ and $0$ on
-requirement $F_1$, which collapses the search: pick a point on formation and the other
-two are free. We report that collapse rather than dressing it as an optimisation,
-because it is the honest reading of one task family---and because it makes the next
-question sharp.
+\paragraph{The first result of the decomposition is that the space is smaller than it
+looks.} A configuration search is only a search if more than one dimension moves the
+outcome. On the task family we ran, the three weights are roughly $0.23$, $0.08$ and $0$
+on requirement $F_1$ (\S\ref{sec:evidence}), and the third is not small---it is
+indistinguishable from two neutral lines of text. \textbf{An axis with zero weight is not a
+dimension.} Eight configurations collapse to four, and since semantics costs 11k tokens an
+episode for a gain whose interval spans zero, four collapse in practice to a choice on
+formation alone.
+
+That collapse is a finding, not a failure of the framework, and it is the kind of finding
+only a decomposition can produce: a study that compared the two corners would have
+reported $0.313$ and had no way to learn that one third of the bundle does nothing. We
+report it rather than restoring the eight-way search, because the honest next question is
+sharper than an optimisation. \textbf{Is the space two-dimensional everywhere, or only
+here?}
 
 \paragraph{Scenarios are the test of whether the weights are constants.} The collapse
 above was measured on a single task class: facts held by different agents, aggregated
@@ -53,6 +60,39 @@ and the shared store that cost 11k tokens for a small gain in a pooling task sho
 for itself when the deliverable is edited jointly. A framework that only ever produces
 ``formation dominates'' is a restatement of the task; one that predicts where formation
 stops dominating, and is then held to it, is a framework.
+
+\subsection{Edges may start public and end private}
+\label{sec:lifecycle}
+
+The framework's sharpest prediction is not about a static configuration at all. If the
+three axes are separable, an edge's position in $(F,S,A)$ can \emph{move}, and the
+direction is not arbitrary: each axis unlocks the next.
+
+\begin{center}\small
+open discovery $\;\rightarrow\;$ sandboxed first exchange $\;\rightarrow\;$ repeated
+success $\;\rightarrow\;$ a persistent tie $\;\rightarrow\;$ attributes worth carrying
+$\;\rightarrow\;$ shared state
+\end{center}
+
+Read against our results this is not speculation about human networks. Public formation is
+what supplies a second source, and a second source is what our data says catches a wrong
+claim. Sandboxed semantics is what makes a first exchange with a stranger affordable.
+Repeated success is the only thing that could make an attribute mean anything---a
+reputation mark is inert here precisely because nothing generated it. And shared state is
+priced at 11k tokens, which is affordable only once an edge is expected to be used again.
+Each stage pays for the next.
+
+\textbf{This is the framework's most testable prediction and we have not tested it.} Every
+episode we ran is a cold start: 582 episodes at \texttt{repeats = 1}. The harness has the
+knob---a run may repeat a goal family instead of reworking one artifact---and it has never
+been turned. Two things would falsify the prediction cheaply. If an open requester's
+contact set does not narrow across repeats, edges do not become private on their own and
+the transition must be designed rather than emergent. And if the attribute axis stays flat
+even when the assertions are \emph{earned} rather than stipulated, then $w_A \approx 0$ is
+a fact about text and not about cold starts.
+
+If instead the contact set does narrow, then ``public versus private'' is a question about
+\emph{time} rather than architecture, and a private network is what a public one becomes.
 
 \paragraph{What an optimum means here.} An optimum is a configuration, not a size. On
 formation it is a \emph{funnel depth}: how far past the roster a requester should be

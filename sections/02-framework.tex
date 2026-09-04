@@ -1,31 +1,46 @@
-\section{Public and private, defined on the edge}
+\section{Public and private are two corners, not two definitions}
 \label{sec:framework}
 
-Take the network as the unit of analysis: agents are nodes, and a request from one to
-another is an edge. The public/private distinction is then not about who is
-\emph{visible}. It is about what an edge \emph{costs} and what happens \emph{after} one
-is used.
+Take the network as the unit of analysis: agents are nodes, a request from one to another
+is an edge. An edge is not one thing. It is a triple
+%
+\[
+  e = (F,\; S,\; A)
+\]
+%
+--- \arch{$F$ormation}, who may open it; \arch{$S$emantics}, what it carries once open;
+\txt{$A$ttributes}, what is asserted about it. The three are independently settable, and
+the first two are checked by a coordination layer on every call while the third only ever
+reaches a model as text.
 
 \begin{quote}
-A network is \arch{public} when an edge forms unilaterally and carries no
-consequence: a requester addresses a counterpart because a card looked relevant, the
-counterpart did not agree in advance, and neither party loses anything if the exchange
-goes badly. A network is \arch{private} when an edge requires assent---from the
-counterpart, or from a third party who introduces them---and its abuse is
-recoverable against.
+\textbf{Public and private are not points on one dial, and they are not definitions we
+supply. They are two characteristic \emph{bundles} in this space} --- two corners that
+co-occur in deployed systems because each component makes the others affordable. Every
+real network sits somewhere between them, and most sit at no corner at all.
 \end{quote}
 
-Twitter and WhatsApp are the reference points. On Twitter an account may address any
-other; relevance is asserted in a profile; a bad actor changes handles. On WhatsApp a
-conversation begins because someone already had the number or was introduced into a
-group; the tie predates the message; misbehaviour costs the tie and embarrasses whoever
-vouched. Reach, cost, exposure and accuracy are all \emph{consequences} of those two
-properties, not additional definitions.
+Twitter and WhatsApp are the two corners. On Twitter an account addresses any other
+without assent, relevance is a claim in a profile, exchanges reveal nothing but their
+content, and trust arrives as a platform-computed badge; a bad actor changes handles. On
+WhatsApp a conversation exists because a number was already held or someone made an
+introduction, the tie carries files and history, what is known about the counterpart is
+who introduced them and how the last exchange went, and misbehaviour costs the tie and
+embarrasses whoever vouched.
+
+The consequence is the paper's premise:
+
+\begin{quote}
+\textbf{``Public versus private'' is not an experimental variable.} It is a comparison
+between two bundles that differ on three axes at once. A study that runs it measures
+$(F_\text{pub}, S_\text{pub}, A_\text{pub}) \rightarrow (F_\text{pri}, S_\text{pri},
+A_\text{pri})$ and reports one number, which cannot be attributed to any component. The
+variables are $do(F)$, $do(S)$ and $do(A)$, one at a time.
+\end{quote}
 
 \input{sections/fig-axes}
 
-Three things follow from the edge (Figure~\ref{fig:axes}), and they are routinely varied
-together and reported as one number.
+Table~\ref{tab:axes} is what each corner supplies on each axis --- the bundles unpacked.
 
 \begin{table}[t]
 \centering\small
@@ -57,6 +72,9 @@ as text. A study that compares a public network to a private one moves all three
 \bottomrule
 \end{tabular}
 \end{table}
+
+Figure~\ref{fig:axes} draws the three on the graph, and the rest of this section takes
+them one at a time.
 
 \paragraph{Edge formation} is which edges a requester may create: the scope of the
 directory it can enumerate and address. This is the axis the word ``public'' usually

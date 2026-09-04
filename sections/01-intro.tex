@@ -7,24 +7,28 @@ already work together: membership is bounded, interaction repeats, context accum
 The first is called public and the second private, and the difference is usually
 described as one of visibility.
 
-Visibility is the wrong frame. Twitter and WhatsApp do not differ mainly in who can be
-seen; they differ in what it costs to open an edge and what happens after one is abused.
+Visibility is the wrong frame, and so is treating the two as endpoints of one dial.
+Twitter and WhatsApp differ in what it costs to open an edge, in what the edge carries
+once open, and in what is asserted about the counterpart---three things at once.
 On the first, an account addresses any other, relevance is a claim in a profile, and a
 bad actor changes handles. On the second, a conversation exists because a number was
-already held or someone made an introduction, and misbehaviour costs the tie and
-embarrasses whoever vouched. Reach, price, exposure and accuracy all follow from that.
+already held or someone made an introduction, the tie carries files and history, and
+misbehaviour costs the tie and embarrasses whoever vouched. Three things differ at once,
+not one.
 
 Taking the edge as the primitive exposes three things that vary together and are reported
 as one. \arch{Edge formation} is which edges a requester may create at all. \arch{Edge
 semantics} is what an existing edge carries: a delegated task returning a result, or
 direct access to state. \txt{Edge attributes} are the beliefs attached to an edge---a
 reputation score, a stated shared objective, a note that the parties have worked together
-before---which change nothing a runtime checks. Each regime supplies a characteristic
-value on each axis, and a study that compares an open network to a closed one moves all
-three and attributes the difference to whichever the authors find most interesting.
+before---which change nothing a runtime checks. Public and private are two \emph{bundles}
+in this space, not two definitions and not two settings of one dial, so a study that
+compares them swaps all three at once and attributes the difference to whichever component
+the authors find most interesting. \textbf{Public versus private is not the experimental
+variable}; $do(F)$, $do(S)$ and $do(A)$ are.
 
-\paragraph{This paper separates them and prices them.} We define the regimes on the edge
-(\S\ref{sec:framework}), give an instrument that sets the three axes independently and a
+\paragraph{This paper unbundles them and prices the components.} We place the two regimes
+as corners of $(F,S,A)$ rather than as definitions (\S\ref{sec:framework}), give an instrument that sets the three axes independently and a
 metric set that charges each one in accuracy, tokens and disclosure
 (\S\ref{sec:quantifying}), and state the design question the decomposition makes
 answerable: not which regime wins, but which configuration a setting should hold, and
@@ -44,15 +48,18 @@ The framework predicts that only the first can do work, and that is how it came 
 
 \paragraph{Contributions.}
 \begin{enumerate}[leftmargin=1.4em,itemsep=1pt,topsep=2pt]
-\item \textbf{A definition of public and private agent networks on the edge}, from which
-      reach, cost and exposure follow, together with the three-axis decomposition it
-      implies and what each regime supplies on each axis (\S\ref{sec:framework}).
+\item \textbf{Public and private recast as two bundles in an edge space} $e=(F,S,A)$
+      rather than as two definitions, which makes ``public versus private'' a bundle swap
+      rather than a variable and each component separately interveneable
+      (\S\ref{sec:framework}).
 \item \textbf{An instrument that sets the three axes independently}---one model, one
       runtime, one kernel, conditions as capability grants---and a metric set that prices
       an axis in accuracy, tokens and disclosure (\S\ref{sec:quantifying}).
-\item \textbf{The combination problem, stated so it can be answered}: an optimum is a
-      funnel depth per setting, and the test of the framework is whether the axis weights
-      survive a change of task family (\S\ref{sec:combination}).
+\item \textbf{A configuration problem in place of a binary comparison}, whose first
+      result is that the space is smaller than it looks---an axis indistinguishable from
+      neutral text is not a dimension---and whose sharpest untested prediction is that an
+      edge's position moves: public discovery earns the tie that earns the state
+      (\S\ref{sec:combination}).
 \item \textbf{A first decomposition on one task family}, including a controlled test of
       relational metadata against a length-matched placebo, and two undesigned results
       that bear directly on the framework (\S\ref{sec:evidence}).

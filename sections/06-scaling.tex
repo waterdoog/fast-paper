@@ -1,9 +1,29 @@
-\section{Further question: do the regimes scale differently?}
+\section{Further question: the two regimes scale on different bottlenecks}
 \label{sec:scaling}
 
-The framework invites a scaling question it does not answer. A private network's size is
-chosen; a public one's is not. Whatever the optimal funnel depth is at a hundred
-counterparts, the interesting claim is what happens at $10^6$.
+The framework invites a scaling question it does not answer, and unpacking the bundle
+changes what the question is. The two corners do not grow along the same variable, so they
+cannot degrade for the same reason.
+
+A public network grows in $N$, the number of addressable counterparts, and $N$ is not
+chosen by anyone. Coverage rises with it; so do search cost, verification cost and
+exposure to counterparts nobody vetted. Its binding constraint is whether ranking can still
+surface the right counterpart out of $N$.
+
+A private network cannot grow in $N$: a roster is bounded by construction. It grows in
+$d$, the number of brokered hops a request may travel, because that is the only way trusted
+coverage increases. Its costs are not retrieval costs---they are the cost of asking a
+broker to spend its own standing, and the decay of whatever recourse survives a chain of
+introductions. Its binding constraint is path length and trust transitivity.
+
+\begin{quote}
+\textbf{Public networks scale through ranking; private networks scale through
+relationships.} The open question the framework poses is not which is better at scale but
+which degrades faster, under what task distribution, and whether a hybrid inherits the
+better bottleneck from each.
+\end{quote}
+
+We can speak to the first of the two and not the second.
 
 Within the range we can run, directory size does nothing. Growing the directory from 50
 to 800 cards---16$\times$, with the roster held at twenty---leaves the open arm's score
@@ -36,3 +56,14 @@ true fact, so a requester that avoided them had nowhere else to go
 (Appendix~\ref{app:reputation}). Whether an agent network can bootstrap $\rho$ from
 outcomes is therefore open, and it is the question that decides whether the public regime
 has an upper bound on size at all.
+
+\paragraph{The private side is one data point.} The brokered hop of
+\S\ref{sec:evidence} is $d=1$: a roster member may forward a request, and the forwarded
+counterpart may not forward it again. That single hop recovers $+0.140$ of a $0.304$ gap.
+Whether $d=2$ adds another increment, half of one, or nothing is the shape of the private
+curve, and we have not measured a second point on it. The prediction the framework makes
+is that the increments shrink faster than reach grows, because what is being spent at each
+hop---a broker's willingness to attach its own standing to a stranger---is exactly what
+attenuates with distance, while the number of reachable counterparts grows with it. If
+that is right, a private network has an interior optimum in $d$ where a public one has no
+interior optimum in $N$ at all, and the two curves are not two settings of one model.
