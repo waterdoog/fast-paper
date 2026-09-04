@@ -22,14 +22,16 @@ A bounded network here addresses twenty holders and no others, which is a trunca
 directory rather than a private network: information reaches a closed group through the
 people in it, one hop further out. We let a roster member forward one question to a
 contact of its own, minted under its own authority, and re-ran. \textbf{The gap did not
-close}: relay moves the bounded arm by $+0.042$ (CI $[-0.137, 0.208]$) against a negative
-control that moved within 1.0\,SE of nothing. Appendix~\ref{app:relay} gives the design,
-the small-$n$ decay, and the failure mode it exposed in our harness.
+closes about half}: the hop is worth $+0.140$ (CI $[+0.073, +0.204]$) over 28 episodes
+per arm, replicating independently within each of the three edge-cost strata, and it cuts
+fabrication from $0.223$ to $0.057$ per task. A first estimate from a 16-episode cell put
+it at $+0.042$ with an interval spanning zero; \S\ref{app:relay2} gives the current
+numbers and \S\ref{app:relay} the design and the harness failure it exposed.
 
 \subsection{Forming an edge is free here, and that is the main limitation}
 
 Whether a link is worth its cost is the central question of strategic network formation
-\cite{jackson1996}, where agents weigh the benefit of a connection against the price of
+\citep{jackson1996}, where agents weigh the benefit of a connection against the price of
 maintaining it. \textbf{We set that price to zero.} In this design, addressing a stranger
 costs exactly what addressing a teammate costs.
 The requester searches a directory and sends a message; there is no negotiation, no
@@ -41,8 +43,13 @@ addressable holders at zero acquisition cost is closer to an oracle than to a ne
 and the formation effect we measure should be read as an upper bound: it is what open
 discovery is worth \emph{when discovery is free}. A per-new-edge cost---an onboarding
 exchange, a latency penalty, a token charge on first contact---is the single variable
-most likely to move the ranking, and we have not run it. We flag it as the first
-experiment a follow-up should do rather than as a caveat to be waved at.
+most likely to move the ranking. We have since run it, and it does not: charging one
+and then two handshake turns per contact outside the roster---578 handshakes fired---leaves
+the open arm ahead by $+0.219$, $+0.263$ and $+0.244$ across the three levels while its
+tokens rise from 53k to 74k. The arm converts friction into cost rather than into failure,
+which is the same shape as the directory-size null (\S\ref{app:retracted}). A cap on
+\emph{total} contacts, which cannot be paid off by spending more, is the manipulation that
+remains untried.
 
 \subsection{What the attribute null does and does not bound}
 

@@ -1,23 +1,24 @@
-Networked agent systems represent relationships in three different places, and the
-three are routinely compared as one. Some structure decides \emph{who can be reached}:
-which agents a requester may discover and address at all. Some decides \emph{what
-crosses an edge}: whether a counterpart accepts a task and returns a result, or
-exposes a store to be listed and read. The rest is \emph{asserted about an edge}:
-trust scores, stated alignment, attribution, tenure---metadata an individual model
-must interpret. Comparisons of open against closed agent networks vary all three at
-once and attribute the difference to the regime. We separate them. Holding the model,
-the runtime, the tasks and the coordination kernel fixed, we intervene on edge
-formation and edge semantics as a $2\times2$ factorial, and independently seed five
-relational properties as context, using a length-matched placebo to distinguish a
-relational effect from the cost of the tokens carrying it. Across 144 episodes of
-hidden-profile coordination scored against forced-value answer keys, a naive
-public-versus-private contrast of $0.313$ decomposes into $0.232$ from edge formation
-and $0.080$ from edge semantics, with the attribute axis indistinguishable from zero:
-its two nominally significant contrasts, out of 56 tests per beat against a chance
-floor of 2.8, reverse sign between beats of the same episodes, and the two assertions
-deployed reputation systems actually implement---prior trust and attribution---are the
-flattest of the set. Exposing a store buys accuracy but costs 11k tokens an episode,
-so per token spent, delegating to an agent that already holds the context wins in both
-arms. Before asking how internet-scale agent collectives adapt, it is worth knowing
-which relational variables are interventions at all: changing the network changes the
-collective, and describing the relationship does not.
+Agent networks are described as public or private as though visibility were the
+difference. It is not: what separates Twitter from WhatsApp is that an edge forms
+unilaterally and carries no consequence in one and requires assent and is recoverable
+against in the other. We define the two regimes on the edge and show that three things
+follow from it which are routinely varied together and reported as one number---who can
+be reached, what an edge carries once formed, and what is merely asserted about it. Each
+supplies something different in each regime: a public network buys lateral breadth,
+sandboxed exchange and platform-computed scores; a private one buys longitudinal depth,
+openable state and relationship-carried history. We give an instrument that sets the
+three independently---one model, one runtime, one coordination kernel, conditions
+expressed as capability grants---and a metric set that prices each axis in accuracy,
+tokens and disclosure rather than in accuracy alone. Across 582 episodes of
+hidden-profile coordination scored against forced-value answer keys, the three axes
+weigh roughly $0.232$, $0.080$ and $0$ on requirement $F_1$: a length-matched placebo
+moves the score as much as a trust assertion does, and the formation effect is reach,
+vanishing when the roster already holds what a task needs. Two results were not
+designed. A bounded roster is shown a quarter as much misinformation as an open
+directory and writes more of it into the deliverable, fabricating values 58 times where
+the open arms fabricated once---filtering out bad claims also removes the second source
+that catches them. And a single brokered hop recovers $+0.140$ of the gap while every
+assertion of trust remains flat, which separates an introduction, a formation
+intervention, from an endorsement, an attribute. The weights are measured on one task
+family; whether they are constants of the framework or of the task is the experiment the
+framework now specifies.

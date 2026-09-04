@@ -1,67 +1,64 @@
 \section{Introduction}
 
-Two pictures of an agent network are in circulation. In the first, agents discover
-each other in the open: they publish what they can do, broadcast what they need, and
-are matched by relevance rather than acquaintance. In the second, agents act for
-people who already work together: membership is bounded, interaction repeats, context
-accumulates. The first is called public and the second private, and the difference is
-usually described as one of visibility.
+Two pictures of an agent network are in circulation. In the first, agents discover each
+other in the open: they publish what they can do, broadcast what they need, and are
+matched by relevance rather than acquaintance. In the second, agents act for people who
+already work together: membership is bounded, interaction repeats, context accumulates.
+The first is called public and the second private, and the difference is usually
+described as one of visibility.
 
-Visibility is the wrong frame, and it hides that three different things are varying
-at once. Whether a requester can \emph{address} a counterpart is one question.
-Whether that counterpart, once addressed, \emph{answers} or \emph{opens its store} is
-a second, and the two are separately enforced: an open directory can front an agent
-that reveals nothing beyond an answer, and a bounded roster can front one whose
-working files are readable. What is \emph{asserted about} the relationship---a trust
-score, a stated shared objective, a note that the parties have collaborated
-before---is a third, and it lives in a prompt rather than in a mechanism.
+Visibility is the wrong frame. Twitter and WhatsApp do not differ mainly in who can be
+seen; they differ in what it costs to open an edge and what happens after one is abused.
+On the first, an account addresses any other, relevance is a claim in a profile, and a
+bad actor changes handles. On the second, a conversation exists because a number was
+already held or someone made an introduction, and misbehaviour costs the tie and
+embarrasses whoever vouched. Reach, price, exposure and accuracy all follow from that.
 
-Taking the network as the unit of analysis, these are interventions on different
-parts of the same graph $G = (V, E)$. \arch{Edge formation} is which edges a requester
-may create at all. \arch{Edge semantics} is what an existing edge carries: a
-delegated task returning a result, or direct access to state. \txt{Edge attributes}
-are the beliefs attached to an edge, which change nothing a runtime checks. A study
-that compares an open network to a closed one moves all three and reports one number.
+Taking the edge as the primitive exposes three things that vary together and are reported
+as one. \arch{Edge formation} is which edges a requester may create at all. \arch{Edge
+semantics} is what an existing edge carries: a delegated task returning a result, or
+direct access to state. \txt{Edge attributes} are the beliefs attached to an edge---a
+reputation score, a stated shared objective, a note that the parties have worked together
+before---which change nothing a runtime checks. Each regime supplies a characteristic
+value on each axis, and a study that compares an open network to a closed one moves all
+three and attributes the difference to whichever the authors find most interesting.
 
-\paragraph{This paper separates them.} Holding the model, runtime, tasks and
-coordination kernel fixed, we intervene on formation and semantics as a $2\times2$
-factorial and seed relational attributes independently. The kernel is an instrument,
-not a contribution. This is a controlled experiment on a small graph rather than a study
-of adaptation at web scale: before asking how internet-scale collectives reorganize, it
-is worth establishing which relational variables are interventions at all.
+\paragraph{This paper separates them and prices them.} We define the regimes on the edge
+(\S\ref{sec:framework}), give an instrument that sets the three axes independently and a
+metric set that charges each one in accuracy, tokens and disclosure
+(\S\ref{sec:quantifying}), and state the design question the decomposition makes
+answerable: not which regime wins, but which configuration a setting should hold, and
+whether the axis weights are constants of the framework or of the task
+(\S\ref{sec:combination}). The coordination kernel is an instrument, not a contribution.
 
-The decomposition is uneven in a way that is not visible without running it. A naive
-public-versus-private contrast of $0.313$ on requirement $F_1$ is three quarters edge
-formation and one quarter edge semantics. The attribute axis contributes nothing we
-can distinguish from noise: across 56 tests per beat against a chance floor of 2.8,
-two contrasts cleared and they reversed sign between beats of the same episodes, while
-a length-matched placebo rules out the obvious alternative that any added text costs
-the same. Prior trust and attribution---the two properties reputation systems in
-deployed agent networks actually carry---are the flattest measurements in the set.
-
-Edge semantics carries a second result. Opening a counterpart's store raises accuracy
-slightly and costs 11k tokens an episode; per token spent, delegating to an agent that
-already holds the context is ahead in both arms. Agents can collaborate by exposing
-state or by exposing agency, and the choice has a measurable exchange rate.
+What we have measured so far is one task family, and it is summarised in
+\S\ref{sec:evidence} with the full record---including the nulls and one
+retraction---in the appendix. Two of its results were not designed and are the reason we
+think the framework earns its keep. A bounded roster is shown far less misinformation
+than an open directory and absorbs more of it, fabricating values 58 times against once,
+because the filter that keeps bad claims out also removes the second source that would
+catch them. And a single brokered hop---one roster member forwarding a request---recovers
+a substantial part of the gap, while every assertion \emph{about} trust stays flat. An
+introduction changes the graph; an endorsement is text on an edge that already exists.
+The framework predicts that only the first can do work, and that is how it came out.
 
 \paragraph{Contributions.}
 \begin{enumerate}[leftmargin=1.4em,itemsep=1pt,topsep=2pt]
-\item \textbf{A relational representation framework for agent networks.} We separate
-      what is represented structurally in the interaction graph from what is asserted
-      as metadata about agents and edges (\S\ref{sec:framework}).
-\item \textbf{A causal decomposition of open against bounded networks.} A $2\times2$
-      intervention separates edge formation from edge semantics with models, tasks and
-      runtime fixed, so the two main effects are identified rather than summed
-      (\S\ref{sec:operational}).
-\item \textbf{An empirical test of relational metadata as a coordination signal},
-      including a length-matched placebo that separates a relational effect from the
-      cost of the text carrying it (\S\ref{sec:seeding}).
-\item \textbf{A controlled evaluation of collective information pooling.}
-      Hidden-profile deliverables with forced values give exact ground truth without a
-      judge on any primary metric (\S\ref{sec:measurement}).
+\item \textbf{A definition of public and private agent networks on the edge}, from which
+      reach, cost and exposure follow, together with the three-axis decomposition it
+      implies and what each regime supplies on each axis (\S\ref{sec:framework}).
+\item \textbf{An instrument that sets the three axes independently}---one model, one
+      runtime, one kernel, conditions as capability grants---and a metric set that prices
+      an axis in accuracy, tokens and disclosure (\S\ref{sec:quantifying}).
+\item \textbf{The combination problem, stated so it can be answered}: an optimum is a
+      funnel depth per setting, and the test of the framework is whether the axis weights
+      survive a change of task family (\S\ref{sec:combination}).
+\item \textbf{A first decomposition on one task family}, including a controlled test of
+      relational metadata against a length-matched placebo, and two undesigned results
+      that bear directly on the framework (\S\ref{sec:evidence}).
 \end{enumerate}
 
 We do not study how a stranger becomes a teammate, and we make no safety claim about
-either regime. We also state in advance that the \emph{existence} of a task-dependent
-crossing between regimes follows from how we allocate facts and is not a discovery;
-what is measured is where it falls and what it costs.
+either regime. We state in advance that the \emph{existence} of a task-dependent crossing
+between regimes follows from how we allocate facts and is not a discovery; what is
+measured is where it falls and what it costs.
