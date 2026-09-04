@@ -143,9 +143,46 @@ arm's advantage decaying to zero. It does not. 27\% of its beats produced no art
 every one of them ending in a transport failure after four retries, and the scorer's
 $F_1=0$ for a beat with no artifact was averaged in as a score. Other sweeps lost 2--3\%.
 
+\begin{figure}[t]
+\centering
+\definecolor{openarm}{HTML}{2A78D6}
+\definecolor{bndarm}{HTML}{C4551F}
+\begin{tikzpicture}[x=1.05cm,y=1.15cm,font=\small]
+  % grid and axes
+  \foreach \y/\l in {0/0\%, 1/25\%, 2/50\%, 3/75\%, 4/100\%} {
+    \draw[gray!25] (0,\y) -- (8,\y);
+    \node[anchor=east,gray!70,font=\scriptsize] at (-0.15,\y) {\l};
+  }
+  \draw[gray!55] (0,0) -- (8,0);
+  \foreach \x/\l in {0/50, 2/100, 4/200, 6/400, 8/800}
+    \node[anchor=north,gray!70,font=\scriptsize] at (\x,-0.12) {\l};
+  \node[anchor=north,gray!70,font=\scriptsize] at (4,-0.62) {directory cards (log scale)};
+
+  % open arm: delivery falls
+  \draw[openarm,line width=1.1pt] (0,3.84) -- (2,3.00) -- (4,2.32) -- (6,2.00) -- (8,2.00);
+  \foreach \x/\y in {0/3.84, 2/3.00, 4/2.32, 6/2.00, 8/2.00}
+    \filldraw[openarm] (\x,\y) circle (2.4pt);
+  \node[openarm,anchor=south west,font=\scriptsize\bfseries] at (0.15,3.94) {open};
+
+  % bounded arm: delivery rises -- and it never sees more than twenty cards
+  \draw[bndarm,line width=1.1pt] (0,2.16) -- (2,2.84) -- (4,3.68) -- (6,3.84) -- (8,3.68);
+  \foreach \x/\y in {0/2.16, 2/2.84, 4/3.68, 6/3.84, 8/3.68}
+    \filldraw[bndarm] (\x,\y) circle (2.4pt);
+  \node[bndarm,anchor=north west,font=\scriptsize\bfseries] at (0.15,2.06) {bounded};
+\end{tikzpicture}
+\caption{Delivery rate in the retracted sweep: the share of episodes that produced an
+artifact at all. \textcolor{openarm}{\textbf{The open arm}} falls with directory size and
+\textcolor{bndarm}{\textbf{the bounded arm}} rises. The bounded arm reads a twenty-card
+roster at every setting, so directory size is not in its causal path and its delivery rate
+cannot be responding to it. Both curves are the same transport outage, sampled by two arms
+that happened to walk their size settings in opposite orders. Scoring the missing artifacts
+as $F_1 = 0$ turned this figure into a scaling result.}
+\label{fig:delivery}
+\end{figure}
+
 Three checks establish that the losses are not caused by directory size. The bounded arm
 reads a twenty-card roster at every setting, so size is not in its causal path, yet its
-delivery rate rose from 54\% to 96\% across the sweep. Scenario was collinear with wall
+delivery rate rose from 54\% to 96\% across the sweep (Figure~\ref{fig:delivery}). Scenario was collinear with wall
 clock---one scenario ran entirely inside the failure window---and the two arms walked
 their size settings in opposite orders inside it, which is what drew one line down and the
 other up. And lost beats used 4.4 of 22+ available turns with zero build calls while
