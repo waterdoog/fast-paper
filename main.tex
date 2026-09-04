@@ -72,23 +72,29 @@
 
 \input{sections/01-intro}
 \input{sections/02-framework}
-\input{sections/03-operationalization}
-\input{sections/04-seeding}          % compress to Table 3 for the 4-page build
-\input{sections/05-tasks-measurement}
-\input{sections/06-design}
-\input{sections/07-results}
-\input{sections/08-discussion}
-\input{sections/09-related}          % compress to one paragraph for the 4-page build
+\input{sections/03-quantifying}
+\input{sections/04-combination}
+\input{sections/05-evidence}
+\input{sections/06-scaling}
+\input{sections/09-related}
 \input{sections/10-conclusion}
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
 
-% Checklist goes after references, before/after supplemental material.
-% Required for the NeurIPS main conference; usually waived for workshops.
 % \input{sections/checklist}
 
 \appendix
+% Everything empirical lives here while the framework settles. Appendices do not
+% count against the page limit, and the body is now the argument the experiments
+% were built to serve rather than a report of the order they were run in.
+\input{sections/A0-experiments}       % what was run, and what each run establishes
+\input{sections/A1-instrument}
+\input{sections/A2-seeding}
+\input{sections/A3-tasks}
+\input{sections/A4-design}
+\input{sections/A5-results}
+\input{sections/A6-discussion}
 \input{sections/appendix}             % drop entirely for the 4-page build
 
 \end{document}

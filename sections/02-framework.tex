@@ -1,79 +1,127 @@
-\section{Three places a relationship can live}
+\section{Public and private, defined on the edge}
 \label{sec:framework}
 
 Take the network as the unit of analysis: agents are nodes, and a request from one to
-another is an edge. Relational structure then sits in exactly three places, and only
-the first two are things a coordination layer checks.
+another is an edge. The public/private distinction is then not about who is
+\emph{visible}. It is about what an edge \emph{costs} and what happens \emph{after} one
+is used.
+
+\begin{quote}
+A network is \arch{public} when an edge forms unilaterally and carries no
+consequence: a requester addresses a counterpart because a card looked relevant, the
+counterpart did not agree in advance, and neither party loses anything if the exchange
+goes badly. A network is \arch{private} when an edge requires assent---from the
+counterpart, or from a third party who introduces them---and its abuse is
+recoverable against.
+\end{quote}
+
+Twitter and WhatsApp are the reference points. On Twitter an account may address any
+other; relevance is asserted in a profile; a bad actor changes handles. On WhatsApp a
+conversation begins because someone already had the number or was introduced into a
+group; the tie predates the message; misbehaviour costs the tie and embarrasses whoever
+vouched. Reach, cost, exposure and accuracy are all \emph{consequences} of those two
+properties, not additional definitions.
+
+\input{sections/fig-axes}
+
+Three things follow from the edge (Figure~\ref{fig:axes}), and they are routinely varied
+together and reported as one number.
 
 \begin{table}[t]
 \centering\small
-\caption{Nine relational dimensions from the literature on ties, teams and open
-innovation, mapped onto the part of the graph each one lives in. Only the first two
-groups are enforced; the third reaches a model as tokens. The paper measures all three
-against each other.}
-\label{tab:dims}
-\begin{tabular}{@{}llll@{}}
+\caption{The three axes, and what each regime supplies on it. Formation and semantics
+are enforced by a coordination layer on every call; attributes only ever reach a model
+as text. A study that compares a public network to a private one moves all three.}
+\label{tab:axes}
+\begin{tabular}{@{}p{0.155\linewidth}p{0.375\linewidth}p{0.375\linewidth}@{}}
 \toprule
-& \textbf{Dimension} & \textbf{Open network} & \textbf{Bounded network} \\
+& \textbf{Public} & \textbf{Private} \\
 \midrule
-\multirow{2}{*}{\rotatebox{90}{\arch{\scriptsize formation}}}
-& \dimname{Membership openness}    & open directory       & bounded roster \\
-& \dimname{Identity continuity}    & weak, per-contact    & stable, re-addressable \\
-\midrule
-\multirow{2}{*}{\rotatebox{90}{\arch{\scriptsize semantics}}}
-& \dimname{Shared-state depth}     & answer only          & store may be listed and read \\
-& \dimname{Repeated interaction}   & edge discarded       & edge persists across tasks \\
-\midrule
-\multirow{5}{*}{\rotatebox{90}{\txt{\scriptsize attributes}}}
-& \dimname{Relationship origin}    & relevance matching   & prior social or organizational tie \\
-& \dimname{Prior trust}            & low                  & higher \\
-& \dimname{Shared goals}           & often absent         & usually present \\
-& \dimname{Accountability}         & weak, diffuse        & attributable \\
-& \dimname{Exit cost}              & low                  & high \\
+\arch{Edge\newline formation}
+& Unilateral. Anyone in the directory is addressable; matching is by declared
+  relevance. \textbf{Lateral topology}: wide and shallow, many weak ties.
+& Bilateral or brokered. A counterpart is reachable because of a prior tie or an
+  introduction. \textbf{Longitudinal topology}: narrow and deep, few strong ties. \\
+\addlinespace[2pt]
+\arch{Edge\newline semantics}
+& Sandboxed by default. A counterpart accepts a task and returns a result; its store
+  stays opaque. Interaction is one-shot request/response.
+& Openable. Shared workspaces, persistent namespaces, a store that may be listed and
+  read---affordable precisely because the tie exists. \\
+\addlinespace[2pt]
+\txt{Edge\newline attributes}
+& Platform-computed for strangers: reputation scores, ratings, usage counts,
+  verification badges.
+& Carried by the relationship: tenure, who introduced whom, how the last
+  collaboration went, who is answerable. \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\paragraph{Edge formation.} Which edges a requester may create: the scope of the
-directory it can enumerate and address. This is the axis the word ``public'' most often
+\paragraph{Edge formation} is which edges a requester may create: the scope of the
+directory it can enumerate and address. This is the axis the word ``public'' usually
 refers to, and the one broadcast networks for agents are built around---an agent
 publishes what it needs and what it offers, and the network routes to whoever is
-relevant \cite{eigenflux}.
+relevant \citep{eigenflux}. Which links form, and at what price, is strategic network
+formation \citep{jackson1996}; the agent setting differs in that the price is
+conventionally zero.
 
-\paragraph{Edge semantics.} What an existing edge carries. A counterpart may accept a
+The two topologies are the substance of the axis. A public directory buys
+\emph{breadth}: a rare requirement finds someone, and---less obviously---a claim can be
+put to a second source. A private roster buys \emph{depth}: fewer counterparts, each
+already paid for, each with a history. Breadth and depth are not two settings of one
+dial; they are the returns on two different edge prices.
+
+\paragraph{Edge semantics} is what an existing edge carries. A counterpart may accept a
 task and return a result while revealing nothing else, or expose a store to be listed
-and read. The distinction is not ours: it separates agent-to-agent task protocols,
-which deliberately keep a counterpart opaque \cite{a2a2025}, from granted resource
-scopes, in which one principal hands another read access to files. A capability kernel
-expresses both as capabilities over different namespaces, so a condition is a set of
-grants rather than a different codebase.
+and read. The distinction is not ours: it separates agent-to-agent task protocols, which
+deliberately keep a counterpart opaque \citep{a2a2025}, from granted resource scopes, in
+which one principal hands another read access to files. It maps onto the regimes because
+exposure follows the tie---one does not open a working directory to a stranger---but it
+is separately settable, and a capability kernel expresses both as grants over different
+namespaces, so a condition is a set of capabilities rather than a different codebase.
 
-\paragraph{Edge attributes.} What is asserted \emph{about} an edge: a reputation
-score, a stated shared objective, a record of prior collaboration, a claim that answers
-are logged and attributed. These are the field's most common steering lever, and they
-rest on an assumption---that an agent builds some representation of its counterpart
-from what it is told and acts differently because of it. Nothing in a runtime checks
-them.
+\paragraph{Edge attributes} is what is asserted \emph{about} an edge. Both regimes have
+a characteristic form of it, and both are trust-conveying metadata that no runtime
+checks: a public network computes a score about a stranger, a private one carries a
+history about an acquaintance. They rest on the same assumption---that an agent builds
+a representation of its counterpart from what it is told, and acts differently because
+of it.
 
-\subsection{Why the grouping is the contribution}
+\subsection{Why these three and not nine}
 
-Nine dimensions are not nine degrees of freedom. In a deployed system they are heavily
-coupled: an open directory tends to come with weak identity, which comes with diffuse
-accountability and low exit cost. A study that compares an open network to a bounded
-one moves all nine and reports one number, then attributes it to whichever dimension
-the authors find most interesting.
+The relational vocabulary in the literature on ties, teams and open innovation supplies
+at least nine dimensions: membership openness, identity continuity, shared-state depth,
+repeated interaction, relationship origin, prior trust, shared goals, accountability,
+exit cost. They are not nine degrees of freedom. In a deployed system an open directory
+brings weak identity, which brings diffuse accountability, which brings low exit cost.
 
-The grouping breaks the coupling in the one way a controlled study can. Formation and
-semantics are properties of the interaction layer: independently settable, checked on
-every call, and not open to argument by a model. Attributes are properties of the
+The three-way grouping breaks the coupling in the one way a controlled study can.
+Formation and semantics are properties of the interaction layer: independently settable,
+checked on every call, not open to argument by a model. Attributes are properties of the
 people behind the agents; a harness cannot instantiate them, only \emph{assert} them.
 
-That is the experiment, not a limitation to apologize for: deployed networks communicate
-trust, alignment, attribution and tenure as text on cards, so asking whether a model acts
-on that text asks whether a large part of agent-network design does anything.
+That asymmetry is the experiment rather than a limitation to apologise for. Deployed
+networks communicate trust, alignment, attribution and tenure as text on cards. Asking
+whether a model acts on that text asks whether a large part of agent-network design does
+anything at all.
 
-Only the first axis has an established literature---which links form, and at what price,
-is strategic network formation \cite{jackson1996}. What an edge \emph{carries} has no such
-body of work, and we take that distinction from deployed protocol design; attributes on an
-edge are a standard attributed graph, but treating them as a control surface and measuring
-whether they work is, to our knowledge, new.
+\subsection{Two corrections the framework has to carry}
+
+Both fall out of taking the edge, rather than visibility, as the primitive.
+
+\paragraph{A public network's noise is partly a feature.} The usual complaint is that an
+open directory is full of unvetted claims. It is---but a requester who can address many
+counterparts can put the same question to a second one, and contradiction is
+\emph{detectable}. A roster that filters misinformation out before it arrives also
+removes the second source needed to catch what does arrive. Whether the filter or the
+redundancy dominates is an empirical question, not a definitional one, and the framework
+must not settle it by calling breadth a cost.
+
+\paragraph{An endorsement is not an introduction.} These are on different axes and are
+routinely conflated. \txt{``This counterpart is reliable''} is an attribute: text, on an
+edge that already exists. \arch{An introduction that makes a third agent addressable} is
+formation: it changes the graph. A framework that files both under ``trust'' predicts
+that a private network's advantage comes from what it knows about its members. The
+decomposition predicts something narrower---that only the half which changes reachability
+can do work---and \S\ref{sec:evidence} reports which way it went.

@@ -1,0 +1,63 @@
+\section{The combination problem}
+\label{sec:combination}
+
+Three axes with two settings each give eight configurations, and no deployed network is
+a corner. A roster with an introduction protocol is public on formation for the agents
+it can reach through a broker and private for everyone else; an enterprise workspace is
+private on formation and fully open on semantics. The design question is not which
+regime wins but \textbf{which configuration a given setting should hold}, and that
+requires each axis to be priced separately---which is what \S\ref{sec:quantifying}
+buys.
+
+\paragraph{The axes are not equally live.} A configuration search is only interesting if
+more than one dimension moves the outcome. Our measurements so far
+(\S\ref{sec:evidence}) put the three weights at roughly $0.23$, $0.08$ and $0$ on
+requirement $F_1$, which collapses the search: pick a point on formation and the other
+two are free. We report that collapse rather than dressing it as an optimisation,
+because it is the honest reading of one task family---and because it makes the next
+question sharp.
+
+\paragraph{Scenarios are the test of whether the weights are constants.} The collapse
+above was measured on a single task class: facts held by different agents, aggregated
+into one deliverable. That class is maximally favourable to formation---reach is
+literally what it asks for---and maximally unfavourable to semantics, since there is no
+shared artifact to co-edit. If the three weights are properties of the framework, they
+should hold elsewhere. If they are properties of the task, they will move, and the
+combination problem becomes real.
+
+\begin{table}[t]
+\centering\small
+\caption{Three settings, and what each predicts for the weight on each axis. These are
+predictions the framework makes and does not yet have evidence for; the task families
+are specified in Appendix~\ref{app:scenarios}.}
+\label{tab:scenarios}
+\begin{tabular}{@{}p{0.20\linewidth}p{0.30\linewidth}p{0.13\linewidth}p{0.13\linewidth}p{0.13\linewidth}@{}}
+\toprule
+\textbf{Setting} & \textbf{What a task looks like} & \textbf{formation} & \textbf{semantics} & \textbf{attributes} \\
+\midrule
+Enterprise team & Co-edit one artifact; the people are known; the context is the
+  bottleneck & low & \textbf{high} & low \\
+\addlinespace[2pt]
+Personal errand & Find the one counterpart who can do a specific thing; no
+  relationship needed after & \textbf{high} & low & medium \\
+\addlinespace[2pt]
+Personal social & Reach a person through someone; the introduction is the product &
+  \textbf{high, brokered} & low & \textbf{high} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The enterprise row is the sharpest test, because it predicts the reverse of what we
+measured: when everyone needed is already reachable, formation has no work left to do,
+and the shared store that cost 11k tokens for a small gain in a pooling task should pay
+for itself when the deliverable is edited jointly. A framework that only ever produces
+``formation dominates'' is a restatement of the task; one that predicts where formation
+stops dominating, and is then held to it, is a framework.
+
+\paragraph{What an optimum means here.} An optimum is a configuration, not a size. On
+formation it is a \emph{funnel depth}: how far past the roster a requester should be
+allowed to reach---own roster, one brokered hop, two hops, open directory---given that
+each additional layer widens reach and weakens recourse. The marginal return on a layer
+is the number of \emph{independent} sources it adds, which saturates; the marginal cost
+is what a claim from that layer is worth, which decays. The crossing is the depth. Stated
+this way the optimum is measurable per scenario rather than argued per regime.
