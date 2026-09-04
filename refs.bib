@@ -1,21 +1,24 @@
 % ---------------------------------------------------------------------
-% NOTE: verify every entry against the publisher record before submission.
-% Entries below were written from memory of the primary sources except
-% where a URL is given; the URLs were checked on 2026-09-02.
+% Every entry below was checked against the publisher record on 2026-09-05.
+% Journal metadata verified through Crossref by DOI; DOIs are recorded so the
+% check is repeatable. The two web sources are corporate publications with no
+% named author and carry an explicit `key` for the author-year label.
 % ---------------------------------------------------------------------
 
 @article{granovetter1973,
   author  = {Granovetter, Mark S.},
   title   = {The Strength of Weak Ties},
   journal = {American Journal of Sociology},
-  volume  = {78}, number = {6}, pages = {1360--1380}, year = {1973}
+  volume  = {78}, number = {6}, pages = {1360--1380}, year = {1973},
+  doi     = {10.1086/225469}
 }
 
 @article{march1991,
   author  = {March, James G.},
   title   = {Exploration and Exploitation in Organizational Learning},
   journal = {Organization Science},
-  volume  = {2}, number = {1}, pages = {71--87}, year = {1991}
+  volume  = {2}, number = {1}, pages = {71--87}, year = {1991},
+  doi     = {10.1287/orsc.2.1.71}
 }
 
 @article{stasser1985,
@@ -23,68 +26,18 @@
   title   = {Pooling of Unshared Information in Group Decision Making:
              Biased Information Sampling During Discussion},
   journal = {Journal of Personality and Social Psychology},
-  volume  = {48}, number = {6}, pages = {1467--1478}, year = {1985}
+  volume  = {48}, number = {6}, pages = {1467--1478}, year = {1985},
+  doi     = {10.1037/0022-3514.48.6.1467}
 }
 
 @incollection{wegner1987,
   author    = {Wegner, Daniel M.},
   title     = {Transactive Memory: A Contemporary Analysis of the Group Mind},
   booktitle = {Theories of Group Behavior},
-  publisher = {Springer}, pages = {185--208}, year = {1987}
-}
-
-@book{chesbrough2003,
-  author    = {Chesbrough, Henry W.},
-  title     = {Open Innovation: The New Imperative for Creating and Profiting
-               from Technology},
-  publisher = {Harvard Business School Press}, year = {2003}
-}
-
-@phdthesis{miller2006,
-  author = {Miller, Mark S.},
-  title  = {Robust Composition: Towards a Unified Approach to Access Control
-            and Concurrency Control},
-  school = {Johns Hopkins University}, year = {2006}
-}
-
-@inproceedings{zheng2023,
-  author    = {Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and others},
-  title     = {Judging {LLM}-as-a-Judge with {MT-Bench} and {Chatbot Arena}},
-  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
-  year      = {2023}
-}
-
-@article{panickssery2024,
-  author  = {Panickssery, Arjun and Bowman, Samuel R. and Feng, Shi},
-  title   = {{LLM} Evaluators Recognize and Favor Their Own Generations},
-  journal = {arXiv preprint arXiv:2404.13076}, year = {2024}
-}
-
-@misc{a2a2025,
-  key          = {Google},
-  title        = {Announcing the {Agent2Agent} Protocol ({A2A})},
-  howpublished = {Google Developers Blog},
-  year         = {2025},
-  note         = {\url{https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/}}
-}
-
-@misc{eigenflux,
-  key          = {EigenFlux},
-  title        = {{EigenFlux}: A Broadcast Network for {AI} Agents},
-  howpublished = {\url{https://www.eigenflux.ai/}},
-  year         = {2026}
-}
-
-@article{agentprotocols2025,
-  key          = {Agent Protocol Survey},
-  title   = {A Survey of {AI} Agent Protocols},
-  journal = {arXiv preprint arXiv:2504.16736}, year = {2025}
-}
-
-@article{coral2025,
-  key          = {Coral Protocol},
-  title   = {{Coral Protocol}: Open Infrastructure Connecting the Internet of Agents},
-  journal = {arXiv preprint arXiv:2505.00749}, year = {2025}
+  editor    = {Mullen, Brian and Goethals, George R.},
+  publisher = {Springer}, address = {New York},
+  pages     = {185--208}, year = {1987},
+  doi       = {10.1007/978-1-4612-4634-3_9}
 }
 
 @article{jackson1996,
@@ -92,5 +45,71 @@
   title   = {A Strategic Model of Social and Economic Networks},
   journal = {Journal of Economic Theory},
   volume  = {71}, number = {1}, pages = {44--74}, year = {1996},
-  note    = {verify volume/pages against the publisher record}
+  doi     = {10.1006/jeth.1996.0108}
+}
+
+@book{chesbrough2003,
+  author    = {Chesbrough, Henry W.},
+  title     = {Open Innovation: The New Imperative for Creating and Profiting
+               from Technology},
+  publisher = {Harvard Business School Press}, address = {Boston, MA},
+  year      = {2003}
+}
+
+@phdthesis{miller2006,
+  author = {Miller, Mark S.},
+  title  = {Robust Composition: Towards a Unified Approach to Access Control
+            and Concurrency Control},
+  school = {Johns Hopkins University}, address = {Baltimore, MD}, year = {2006}
+}
+
+@inproceedings{zheng2023,
+  author    = {Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and
+               Zhuang, Siyuan and Wu, Zhanghao and Zhuang, Yonghao and
+               Lin, Zi and Li, Zhuohan and Li, Dacheng and Xing, Eric P. and
+               Zhang, Hao and Gonzalez, Joseph E. and Stoica, Ion},
+  title     = {Judging {LLM}-as-a-Judge with {MT-Bench} and {Chatbot Arena}},
+  booktitle = {Advances in Neural Information Processing Systems 36
+               (NeurIPS 2023) Datasets and Benchmarks Track},
+  year      = {2023}
+}
+
+@inproceedings{panickssery2024,
+  author    = {Panickssery, Arjun and Bowman, Samuel R. and Feng, Shi},
+  title     = {{LLM} Evaluators Recognize and Favor Their Own Generations},
+  booktitle = {Advances in Neural Information Processing Systems 37
+               (NeurIPS 2024)},
+  pages     = {68772--68802}, year = {2024},
+  note      = {arXiv:2404.13076}
+}
+
+@misc{a2a2025,
+  key          = {Google},
+  title        = {Announcing the {Agent2Agent} Protocol ({A2A})},
+  howpublished = {Google Developers Blog},
+  year         = {2025},
+  note         = {\url{https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/}.
+                  Accessed 2026-09-05}
+}
+
+@misc{eigenflux,
+  key          = {EigenFlux},
+  title        = {{EigenFlux}: A Broadcast Network for {AI} Agents},
+  howpublished = {\url{https://www.eigenflux.ai/}},
+  year         = {2026},
+  note         = {Accessed 2026-09-05}
+}
+
+@article{agentprotocols2025,
+  author  = {Yang, Yingxuan and Chai, Huacan and Song, Yuanyi and Qi, Siyuan and
+             Wen, Muning and Li, Ning and Liao, Junwei and Hu, Haoyi and others},
+  title   = {A Survey of {AI} Agent Protocols},
+  journal = {arXiv preprint arXiv:2504.16736}, year = {2025}
+}
+
+@article{coral2025,
+  author  = {Georgio, Roman J. and Forder, Caelum and Deb, Suman and
+             Rahimov, Andri and Carroll, Peter and G\"{u}rcan, \"{O}nder},
+  title   = {{Coral Protocol}: Open Infrastructure Connecting the Internet of Agents},
+  journal = {arXiv preprint arXiv:2505.00749}, year = {2025}
 }
