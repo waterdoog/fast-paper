@@ -31,6 +31,11 @@ five smoke sweeps    & mechanism checks                 & 15  & Confirm each man
 \end{tabular}
 \end{table}
 
+\ifcompact
+\input{sections/fig-credulity}
+\input{sections/fig-ladder}
+\fi
+
 \subsection{Formation: the dose-response and its control}
 \label{app:dose}
 
@@ -201,8 +206,8 @@ interpret one when delivery differs across compared cells by more than 15 points
 \subsection{Task families for the scenario test}
 \label{app:scenarios}
 
-Table~\ref{tab:scenarios} makes predictions that require three task families rather than
-one. Each keeps forced-value scoring and hidden-profile allocation; what changes is where
+The scenario predictions of \S\ref{sec:combination} require three task families rather
+than one. Each keeps forced-value scoring and hidden-profile allocation; what changes is where
 the difficulty sits.
 
 \begin{itemize}[leftmargin=1.4em,itemsep=2pt,topsep=2pt]
@@ -220,3 +225,22 @@ the difficulty sits.
       load-bearing, because it gates whether the next edge forms at all---which, if it
       holds, would locate the attribute axis's one real use.
 \end{itemize}
+
+\subsection{The retrieval model behind the scaling question}
+\label{app:retrieval}
+
+\input{sections/fig-rho}
+
+Let $k$ be the number of search results a requester acts on, $m$ the number of cards
+matching a query, $h$ the number of those that actually hold the needed fact, and $\rho$
+the correlation between a card's rank and holding it. With no ranking signal the needed
+holder's expected rank is $(m+1)/2$; with perfect ranking it is $(h+1)/2$. Interpolating
+between the two by $\rho$ and truncating at $k$ gives the survival probability plotted in
+Figure~\ref{fig:rho}. We take $m(N) \approx 0.094N$ from the directory generator, which
+draws 35\% of filler tags from the scenario vocabulary, and hold $k=20$.
+
+The model is deliberately crude---it assumes a single query and ignores reformulation---and
+its purpose is not to predict a number but to establish an order of magnitude for the
+requirement on $\rho$. That requirement is the load-bearing claim: at $10^6$ cards the
+ranking has to be right to within one part in a thousand, which is not a threshold a
+better similarity function reaches.

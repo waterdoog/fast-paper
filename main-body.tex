@@ -6,12 +6,23 @@
 %  To compress to 4 pages, see README.md — comment out three \input lines.
 % =====================================================================
 \documentclass{article}
+% \COMPACT is set by the venue wrapper before this file is read.
+\providecommand{\WSTITLE}{Agentic Web}
+\newif\ifcompact\compactfalse
+\ifdefined\COMPACTBUILD\compacttrue\fi
 
 % Official NeurIPS style. Both target workshops say "use the NeurIPS template" and
 % are double-blind, which is exactly the dblblindworkshop option. NeurIPS has not
 % published a 2026 style file yet; 2025 is the current one. Swap the two lines when
 % it appears -- nothing else in this file depends on the year.
 \usepackage[dblblindworkshop]{neurips_2025}
+\workshoptitle{\WSTITLE}
+% The 2025 style file is the current one; these two lines make its footer name the
+% year we are actually submitting to. Delete them when neurips_2026.sty ships.
+\makeatletter
+\renewcommand{\@neuripsordinal}{40th}
+\renewcommand{\@neuripsyear}{2026}
+\makeatother
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}

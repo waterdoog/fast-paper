@@ -1,3 +1,51 @@
+\ifcompact
+\section{Evidence so far}
+\label{sec:evidence}
+
+We have run the decomposition on one task family: 582 episodes across sixteen sweeps, one
+model family, one kernel. The full record---every result, the nulls, and one
+retraction---is Appendix~\ref{app:experiments}. Four findings bear on the framework.
+
+\input{sections/fig-dose}
+
+\begin{center}\small
+\begin{tabular}{@{}p{0.30\linewidth}p{0.62\linewidth}@{}}
+\toprule
+\textbf{Finding} & \textbf{Evidence} \\
+\midrule
+Only formation is an intervention
+& $0.313$ decomposes into $0.232$ formation, $0.080$ semantics (spans zero, $+11$k tokens),
+  $\approx\!0$ attributes. 56 contrasts per beat against a chance floor of $2.8$; the two
+  that cleared reverse sign between beats of the same episodes; a length-matched placebo of
+  two neutral lines moves the score $+0.005$. \\
+\addlinespace[2pt]
+The formation effect is reach
+& Dose-response in \metric{E} (Figure~\ref{fig:dose}): $+0.034$ (CI $[-0.067,+0.137]$) at
+  $E=0$, $+0.111$ at $0.3$, $+0.279$ at $0.7$. The public arm is flat across all three
+  doses; the private arm's useful sources fall $4.36 \to 3.17 \to 1.26$. \\
+\addlinespace[2pt]
+A roster sees less bad information and believes more of it
+& Shown a third as much planted misinformation; writes $0.269$ against $0.094$ instances
+  per task into the deliverable ($+0.175$, CI $[+0.105,+0.242]$). Across 287 and 286
+  delivered tasks the public arms fabricated once, the private arms 58 times. Matching on
+  sources obtained does not close it (2.4\% against 18.1\% at four sources). \\
+\addlinespace[2pt]
+An introduction does work an endorsement does not
+& One brokered hop recovers $+0.140$ (CI $[+0.073,+0.204]$) of a $0.304$ gap, replicating
+  within three edge-cost strata, and cuts fabrication $0.223 \to 0.057$. Read-all with deep
+  ties only inside the roster is indistinguishable from full openness ($+0.019$). Both are
+  formation manipulations; every attribute manipulation is flat. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{What this does not cover.} One model family carries every sweep with a live main
+effect; the second-model replication was run only at $E=0$, the control cell, so
+model-independence is not established. No counterpart has an incentive to lie---36 of 100
+cards carry plausible tags and no knowledge, but every agent that is asked answers
+honestly---so the private regime's characteristic defence has nothing to defend against
+here. And the scenario predictions of \S\ref{sec:combination} are predictions.
+\else
 \section{Evidence so far}
 \label{sec:evidence}
 
@@ -25,7 +73,7 @@ flat across all three doses ($0.823 / 0.791 / 0.803$), so the manipulation is sp
 the arm it should affect, and the mechanism variable tracks it---the private arm's useful
 sources fall $4.36 \to 3.17 \to 1.26$.
 
-\input{sections/fig-credulity}
+\ifcompact\else\input{sections/fig-credulity}\fi
 
 \paragraph{A roster sees less bad information and believes more of it.} This is the one
 result we did not design (Figure~\ref{fig:credulity}). The private arm is shown roughly a quarter as much planted
@@ -45,7 +93,7 @@ credulity but something else is also operating---plausibly that a counterpart in
 roster is believed \emph{because} it is inside one, which our design cannot separate from
 the reach effect and which the attribute null makes more interesting rather than less.
 
-\input{sections/fig-ladder}
+\ifcompact\else\input{sections/fig-ladder}\fi
 
 \paragraph{An introduction does work an endorsement does not.} Giving a bounded roster a
 single brokered hop---a roster member may forward a request to a counterpart the
@@ -64,5 +112,7 @@ control cell and is null by construction, so model-independence is not establish
 counterpart in these episodes has an incentive to lie: cards may be empty---36 of 100
 carry plausible tags and no knowledge---but every agent that is asked answers honestly,
 so the private regime's characteristic defence has nothing to defend against here. And
-the scenario predictions of Table~\ref{tab:scenarios} are predictions: we have measured
+the scenario predictions of \S\ref{sec:combination} are predictions: we have measured
 one task family, not three.
+
+\fi

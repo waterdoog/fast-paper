@@ -23,47 +23,41 @@ which degrades faster, under what task distribution, and whether a hybrid inheri
 better bottleneck from each.
 \end{quote}
 
-We can speak to the first of the two and not the second.
+We can speak to the first of the two and not the second, and only within a range. Growing
+the directory from 50 to 800 cards---16$\times$, roster held at twenty---leaves the open
+arm's score flat ($0.800 \to 0.826$, CI spans zero) while search precision falls by roughly
+half and tokens double: the arm pays for the extra difficulty rather than failing at it. We
+report this null with a caveat earned the hard way, since our first reading of the same
+sweep was a scaling result and was an outage (\S\ref{app:retracted}).
 
-Within the range we can run, directory size does nothing. Growing the directory from 50
-to 800 cards---16$\times$, with the roster held at twenty---leaves the open arm's score
-flat ($0.800 \to 0.826$, CI spans zero) while search precision falls by roughly half and
-tokens double. The arm pays for the extra difficulty rather than failing at it. We report
-this null with a caveat earned the hard way: our first reading of this sweep was a
-scaling result, and it was an outage (Appendix~\ref{app:retracted}).
-
-\input{sections/fig-rho}
-
-Extrapolating past that range needs a model, and the honest form of it is uncomfortable.
-Let $k$ be the number of search results a requester acts on, $m$ the number of cards
-matching a query, and $\rho$ the correlation between a card's rank and whether its owner
-actually holds the needed fact. Cards are $\sim$50 words of self-description, so what
+Extrapolating past that range needs a model of how well a directory can be ranked, and the
+honest version is uncomfortable. A card is $\sim$50 words of self-description, so what
 ranking must recover---whether this agent holds \emph{this} value---is a property of
-private state and is not in the index. At $\rho = 0$ the needed holder survives
-truncation with probability $k/m$, which is hopeless past a few thousand cards. But
-$\rho = 0$ is not the honest case, it is the no-signal case: web search retrieves from
-$10^{11}$ documents, so ranking clearly can be good. The question is how good. Under this
-model (Figure~\ref{fig:rho}), $\rho = 0.9$ collapses by $2\times10^5$ cards and reaching $10^6$ requires
-$\rho \approx 0.999$.
+private state and is not in the index. Writing $\rho$ for the correlation between rank and
+actually holding the fact, $\rho=0$ is not the honest case but the \emph{no-signal} case;
+web search retrieves from $10^{11}$ documents, so ranking plainly can be good. The question
+is how good, and under the model of \S\ref{app:retrieval} (Figure~\ref{fig:rho}) the answer
+is that $\rho = 0.9$ has already collapsed by $2\times10^5$ cards and reaching $10^6$ needs
+$\rho \approx 0.999$. ``A better algorithm'' understates it: web search reaches its $\rho$
+by aggregating outcome feedback rather than by sorting more cleverly, and the equivalent
+signal in an agent network is a record of who has answered correctly before---which is what
+a reputation mechanism would have to bootstrap, and our one test of that was null for a
+reason we can name (\S\ref{app:reputation}).
 
-That is the point worth making, and it is not ``a better algorithm will fix it''. Web
-search reaches its $\rho$ through decades of outcome feedback---clicks, dwell, links---
-aggregating other people's judgments rather than sorting more cleverly. The equivalent
-signal in an agent network is a record of who has answered correctly before, which is
-what a reputation mechanism is for. Our one test of a differential reputation mark was
-null, and the design was at fault: marks were attached to counterparts who also held the
-true fact, so a requester that avoided them had nowhere else to go
-(Appendix~\ref{app:reputation}). Whether an agent network can bootstrap $\rho$ from
-outcomes is therefore open, and it is the question that decides whether the public regime
-has an upper bound on size at all.
-
-\paragraph{The private side is one data point.} The brokered hop of
-\S\ref{sec:evidence} is $d=1$: a roster member may forward a request, and the forwarded
-counterpart may not forward it again. That single hop recovers $+0.140$ of a $0.304$ gap.
-Whether $d=2$ adds another increment, half of one, or nothing is the shape of the private
-curve, and we have not measured a second point on it. The prediction the framework makes
-is that the increments shrink faster than reach grows, because what is being spent at each
-hop---a broker's willingness to attach its own standing to a stranger---is exactly what
-attenuates with distance, while the number of reachable counterparts grows with it. If
-that is right, a private network has an interior optimum in $d$ where a public one has no
-interior optimum in $N$ at all, and the two curves are not two settings of one model.
+\ifcompact
+\paragraph{The private side is one data point.} The brokered hop of \S\ref{sec:evidence} is
+$d=1$, worth $+0.140$ of a $0.304$ gap; we have not measured a second point. The framework
+predicts the increments shrink faster than reach grows, because what is spent at each
+hop---a broker's willingness to attach its own standing to a stranger---attenuates with
+distance while reachable counterparts multiply. If so, a private network has an interior
+optimum in $d$ where a public one has none in $N$.
+\else
+\paragraph{The private side is one data point.} The brokered hop of \S\ref{sec:evidence} is
+$d=1$. That single hop recovers $+0.140$ of a $0.304$ gap; whether $d=2$ adds another
+increment, half of one, or nothing is the shape of the private curve and we have not
+measured a second point on it. The framework predicts the increments shrink faster than
+reach grows, because what is spent at each hop---a broker's willingness to attach its own
+standing to a stranger---is exactly what attenuates with distance while reachable
+counterparts multiply. If that holds, a private network has an interior optimum in $d$
+where a public one has none in $N$, and the two curves are not two settings of one model.
+\fi

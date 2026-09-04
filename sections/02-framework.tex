@@ -38,7 +38,7 @@ A_\text{pri})$ and reports one number, which cannot be attributed to any compone
 variables are $do(F)$, $do(S)$ and $do(A)$, one at a time.
 \end{quote}
 
-\input{sections/fig-axes}
+\ifcompact\else\input{sections/fig-axes}\fi
 
 Table~\ref{tab:axes} is what each corner supplies on each axis --- the bundles unpacked.
 
@@ -73,9 +73,26 @@ as text. A study that compares a public network to a private one moves all three
 \end{tabular}
 \end{table}
 
-Figure~\ref{fig:axes} draws the three on the graph, and the rest of this section takes
-them one at a time.
+\ifcompact\else Figure~\ref{fig:axes} draws the three on the graph.\fi The rest of this
+section takes them one at a time.
 
+\ifcompact
+\paragraph{The two topologies are the substance of the formation axis.} A public directory
+buys \emph{breadth}: a rare requirement finds someone and---less obviously---a claim can be
+put to a second source. A private roster buys \emph{depth}: fewer counterparts, each
+already paid for, each with a history. These are not two settings of one dial; they are the
+returns on two different edge prices. Which links form, and at what price, is strategic
+network formation \citep{jackson1996}, and the agent setting differs in that the price is
+conventionally zero. On \arch{semantics}, exposure follows the tie---one does not open a
+working directory to a stranger---but the axis is separately settable, and a capability
+kernel expresses both settings as grants over different namespaces, so a condition is a set
+of capabilities rather than a different codebase \citep{a2a2025}. On \txt{attributes}, both
+regimes carry a characteristic form of trust-conveying metadata that no runtime checks: a
+public network computes a score about a stranger, a private one carries a history about an
+acquaintance. Both rest on the same assumption---that an agent builds a representation of
+its counterpart from what it is told and acts differently because of it.
+
+\else
 \paragraph{Edge formation} is which edges a requester may create: the scope of the
 directory it can enumerate and address. This is the axis the word ``public'' usually
 refers to, and the one broadcast networks for agents are built around---an agent
@@ -106,24 +123,40 @@ history about an acquaintance. They rest on the same assumption---that an agent 
 a representation of its counterpart from what it is told, and acts differently because
 of it.
 
+\fi
+
 \subsection{Why these three and not nine}
 
-The relational vocabulary in the literature on ties, teams and open innovation supplies
-at least nine dimensions: membership openness, identity continuity, shared-state depth,
-repeated interaction, relationship origin, prior trust, shared goals, accountability,
-exit cost. They are not nine degrees of freedom. In a deployed system an open directory
-brings weak identity, which brings diffuse accountability, which brings low exit cost.
+The literature on ties, teams and open innovation supplies at least nine relational
+dimensions---membership openness, identity continuity, shared-state depth, repeated
+interaction, relationship origin, prior trust, shared goals, accountability, exit cost.
+They are not nine degrees of freedom: in a deployed system an open directory brings weak
+identity, which brings diffuse accountability, which brings low exit cost. The three-way
+grouping breaks that coupling the one way a controlled study can. Formation and semantics
+are properties of the interaction layer---independently settable, checked on every call,
+not open to argument by a model. Attributes are properties of the people behind the agents;
+a harness cannot instantiate them, only \emph{assert} them. That asymmetry is the
+experiment rather than a limitation to apologise for: deployed networks communicate trust,
+alignment, attribution and tenure as text on cards, so asking whether a model acts on that
+text asks whether a large part of agent-network design does anything at all.
 
-The three-way grouping breaks the coupling in the one way a controlled study can.
-Formation and semantics are properties of the interaction layer: independently settable,
-checked on every call, not open to argument by a model. Attributes are properties of the
-people behind the agents; a harness cannot instantiate them, only \emph{assert} them.
+\ifcompact
+\subsection{Two corrections the framework has to carry}
 
-That asymmetry is the experiment rather than a limitation to apologise for. Deployed
-networks communicate trust, alignment, attribution and tenure as text on cards. Asking
-whether a model acts on that text asks whether a large part of agent-network design does
-anything at all.
-
+Both fall out of taking the edge, rather than visibility, as the primitive. First,
+\textbf{a public network's noise is partly a feature}: a requester who can address many
+counterparts can put the same question to a second one, and contradiction is
+\emph{detectable}, so a roster that filters misinformation out before it arrives also
+removes the second source needed to catch what does arrive. Whether the filter or the
+redundancy dominates is empirical, and the framework must not settle it by calling breadth
+a cost. Second, \textbf{an endorsement is not an introduction}, and they sit on different
+axes. \txt{``This counterpart is reliable''} is an attribute: text on an edge that already
+exists. \arch{An introduction that makes a third agent addressable} is formation: it
+changes the graph. A framework that files both under ``trust'' predicts that a private
+network's advantage comes from what it knows about its members; the decomposition predicts
+something narrower---that only the half which changes reachability can do work---and
+\S\ref{sec:evidence} reports which way it went.
+\else
 \subsection{Two corrections the framework has to carry}
 
 Both fall out of taking the edge, rather than visibility, as the primitive.
@@ -143,3 +176,4 @@ formation: it changes the graph. A framework that files both under ``trust'' pre
 that a private network's advantage comes from what it knows about its members. The
 decomposition predicts something narrower---that only the half which changes reachability
 can do work---and \S\ref{sec:evidence} reports which way it went.
+\fi

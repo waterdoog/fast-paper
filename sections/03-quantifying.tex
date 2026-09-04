@@ -2,52 +2,38 @@
 \label{sec:quantifying}
 
 The framework is only useful if each axis can be set independently and each regime's
-claimed advantage can be priced. This section states what that requires; the instrument
-that implements it is Appendix~\ref{app:instrument}.
+claimed advantage can be priced. Model, runtime, task, answer key and coordination kernel
+are held fixed; a condition is a set of capability grants rather than a different codebase,
+so \arch{formation} (which cards a requester may enumerate and address), \arch{semantics}
+(whether a counterpart returns an answer or exposes a store) and \txt{attributes} (what the
+cards say about themselves and each other) move one at a time. Formation and semantics are
+refused by the kernel when violated; attributes reach the model only as tokens, which is
+what makes the third axis a test rather than a tautology. Appendix~\ref{app:instrument}
+gives the instrument.
 
-\paragraph{One system, three switches.} Model, runtime, task, answer key and
-coordination kernel are held fixed. A condition is a set of capability grants, not a
-different codebase, so \arch{formation} (which cards a requester may enumerate and
-address), \arch{semantics} (whether a counterpart returns an answer or exposes a store)
-and \txt{attributes} (what the cards say about themselves and each other) move one at a
-time. Formation and semantics are refused by the kernel when violated; attributes reach
-the model only as tokens, which is what makes the third axis a real test rather than a
-tautology.
+The task class has to force pooling, or reach cannot be worth anything. Each episode is a
+hidden-profile deliverable: the facts a correct artifact needs are distributed across
+counterparts so that no single agent, including the requester, holds enough
+\citep{stasser1985}. \metric{E}, the share of required facts placed \emph{outside} the
+roster, is the dose on the formation axis---at $E=0$ a private network needs nothing it
+cannot already reach, so the axis must show no effect there. Distractors plant contradicting
+values on counterparts other than the true holder, so that a second source has something to
+catch. Every fact is a number, a date, a name or an enum, and the deliverable is scored by
+exact match after a normalization rule fixed before the keys were written: no judge sits on
+any primary metric.
 
-\paragraph{A task class where pooling is forced.} Each episode is a hidden-profile
-deliverable: the facts a correct artifact needs are distributed across counterparts so
-that no single agent, including the requester, holds enough \citep{stasser1985}. Two
-parameters make the axes bite. \metric{E} is the share of required facts placed
-\emph{outside} the roster, which is the dose on the formation axis---at $E=0$ a private
-network needs nothing it cannot already reach, and the axis must show no effect.
-Distractors plant contradicting values on counterparts other than the true holder, so
-that a second source has something to catch.
+\paragraph{An axis is priced, not just scored.} Around requirement $F_1$ sit
+\metric{useful sources} (counterparts contacted that held a needed fact---the mechanism
+variable for formation), \metric{pollution absorbed} and \metric{invented} (a distractor's
+value appearing in the artifact, split by whether the agent was ever shown it, the second
+being fabrication), and \metric{tokens} and \metric{contacts}---the price of the arm and,
+since each contact discloses the goal, its exposure. \arch{Semantics} buys accuracy and is
+charged in tokens; reporting only the first half would make the private regime look better
+than the exchange rate supports.
 
-\paragraph{Metrics with no judge on any primary number.} Every fact is a number, a date,
-a name or an enum, and the deliverable is scored by exact match after a normalization
-rule fixed before the keys were written. This yields requirement $F_1$ as the task
-score. Around it sit four quantities that price what a score costs:
-
-\begin{itemize}[leftmargin=1.4em,itemsep=1pt,topsep=2pt]
-\item \metric{useful sources} --- counterparts contacted that held a needed fact. The
-      mechanism variable for formation.
-\item \metric{pollution absorbed} and \metric{invented} --- a distractor's value
-      appearing in the artifact, split by whether the agent was ever shown it. The
-      second is fabrication, and it is the failure mode of a starved requester.
-\item \metric{tokens} and \metric{contacts} --- the price of the arm, and, since each
-      contact discloses the goal, its exposure.
-\end{itemize}
-
-An axis is not evaluated by its effect on $F_1$ alone. \arch{Semantics}, for instance,
-buys accuracy and is charged in tokens; reporting only the first half would make the
-private regime look better than the exchange rate supports.
-
-\paragraph{Delivery is reported before any contrast.} A trial that produced no artifact
-is a missing observation, not a score of zero, and averaging it in as zero converts an
-outage into an effect. We found this the expensive way: one sweep lost 27\% of its
-trials to transport failures, the losses landed unevenly across cells, and the resulting
-curve was legible as a scaling result until the delivery rates were tabulated
-(Appendix~\ref{app:retracted}). Every contrast we report is therefore preceded by a
-per-cell delivery table, is computed both conditional on delivery and with losses scored
-as zero, and is treated as uninterpretable when delivery differs across compared cells
-by more than 15 points.
+\paragraph{Delivery is reported before any contrast.} A trial that produced no artifact is
+a missing observation, not a score of zero, and averaging it in as zero converts an outage
+into an effect. We found this the expensive way (\S\ref{app:retracted}). Every contrast we
+report is therefore preceded by a per-cell delivery table, is computed both conditional on
+delivery and with losses scored as zero, and is treated as uninterpretable when delivery
+differs across compared cells by more than 15 points.
