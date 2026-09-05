@@ -4,32 +4,37 @@ Public and private agent networks are two bundles of edge properties, not two va
 variable. An edge is a triple---who may form it, what it carries, what is asserted about
 it---and Twitter and WhatsApp are two corners of that space, not its two poles. Comparing
 the corners moves all three axes at once, which is why the comparison has never told anyone
-which component was doing the work.
+which component was doing the work, and why it returns $0.181$ or $0.314$ on the same
+episodes depending on which pairing an author happens to call public and private.
 
-Separated on one kernel, one runtime and one model, the three weigh $0.248$, $0.066$
-and $0$ on a hidden-profile task family---while the naive comparison they are supposed to
-explain returns $0.181$ or $0.314$ on the same episodes, depending on how the bundles are
-paired. The formation advantage is reach: it
-vanishes when the roster already holds what a task needs. The semantics advantage is real and small, and charged at 11k tokens an episode. The attribute axis does not move, and a
-length-matched placebo of two neutral lines is indistinguishable from an assertion of prior
-trust. \textbf{The first result of a decomposition is that the space is smaller than it
-looks}: an axis whose effect cannot be told apart from two lines of filler is not a
-dimension.
+Separated on one kernel, one runtime and one model, the three weigh $0.248$, $0.066$ and $0$
+on a hidden-profile task family. The formation advantage is reach: it vanishes when the
+roster already holds what a task needs. The semantics advantage is real, small, and charged
+at 19k tokens a task. The attribute axis does not move, and a length-matched placebo of two
+neutral lines is indistinguishable from an assertion of prior trust. \textbf{The first
+result of a decomposition is that the space is smaller than it looks}: an axis whose effect
+cannot be told apart from two lines of filler is not a dimension.
 
-Two results we did not design say more than the ones we did. A bounded roster sees a
-quarter as much misinformation and writes more of it into its deliverable, fabricating
-values 58 times where open arms fabricated once---the filter that keeps bad claims out
-removes the second source that catches them. And one brokered hop recovers a large part of
-the gap while every assertion of trust stays flat. An introduction changes the graph; an
-endorsement does not.
+\textbf{On this task family the bounded network is weakly dominated, and we do not want to
+be read as splitting the difference.} It never scores higher. It costs $\sim$19k more tokens
+a task at every $E$ we ran---including $E=0$, where its roster holds everything the task
+needs and it merely ties. It is slower. It fabricates values 58 times where the open arms
+fabricated once, because the filter that keeps bad claims out also removes the second source
+that catches them. Its single better column, disclosing to fewer counterparts, appears only
+where it has already failed to reach anyone, which is not a privacy property. Against that,
+one brokered hop recovers close to half the gap while every assertion \emph{about} trust
+stays flat: an introduction changes the graph, an endorsement does not.
 
-Both open questions are the framework's own. Whether the space is two-dimensional
-everywhere, or only on a task family that asks for reach and offers nothing to co-edit, is
-the next experiment. So is the prediction we have not tested: that an edge's position is
-not fixed. Open discovery buys the second source, a sandboxed first exchange makes a
+So if a private agent network is worth building, our measurements do not contain the reason,
+and the reason is not information quality. Confidentiality, recourse over repeated
+encounters, and resistance to counterparts with an incentive to lie are the three
+candidates, and all three sit outside our scorer---each naming an experiment rather than a
+hedge. Two further questions are the framework's own: whether the space is two-dimensional
+everywhere or only on a task family that asks for reach, and whether an edge's position is
+fixed at all. Open discovery buys the second source, a sandboxed first exchange makes a
 stranger affordable, repeated success is the only thing that could make an attribute mean
-anything, and shared state is worth its price only once an edge expects to be used again.
-If contact sets narrow across repeats, a private network is what a public one becomes, and
-the two regimes were never alternatives. For an agentic web the implication is narrow and,
-we think, useful: changing what a network permits changes what the collective does, and
-describing the relationship does not---not at the layer where descriptions currently live.
+anything, and shared state is worth its price only once an edge expects to be reused. If
+contact sets narrow across repeats, a private network is what a public one becomes, and the
+regimes were never alternatives. For an agentic web the implication is narrow and, we think,
+useful: changing what a network permits changes what the collective does, and describing the
+relationship does not---not at the layer where descriptions currently live.
